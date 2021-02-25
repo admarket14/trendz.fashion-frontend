@@ -1,0 +1,14 @@
+/* stylelint-disable selector-pseudo-class-no-unknown */
+
+.searchBar {
+  position: absolute;
+  width: 25px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .searchCircle,
+  .searchStrokePath {
+    stroke: #200e32;
+  }
+}
