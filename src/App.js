@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
-import './App.css';
 import PageRoutes from './routes/PageRoutes';
 import appLanguage from './lang/appLanguage';
 

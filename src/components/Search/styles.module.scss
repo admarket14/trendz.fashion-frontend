@@ -1,0 +1,50 @@
+/* stylelint-disable selector-pseudo-class-no-unknown */
+
+@import "../../styles/mixins";
+
+.searchWrap {
+  @include transform-center;
+
+  width: 500px;
+  border-radius: 50px;
+
+  .input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 50px;
+    padding: 5px 20px;
+    font-size: 15px;
+    outline: none;
+    letter-spacing: 1px;
+    text-align: center;
+    transition: 0.3s ease-in-out;
+    background: #fff;
+    color: #424242;
+    box-shadow: 0 0 0 1px #bbb;
+
+    &:focus {
+      text-align: left;
+      box-shadow: 0 0 0 2px #139dff;
+    }
+  }
+
+  .searchButton {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 5px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    svg {
+      @include transform-center;
+
+      width: 20px;
+    }
+  }
+}

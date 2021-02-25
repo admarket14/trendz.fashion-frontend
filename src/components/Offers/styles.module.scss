@@ -1,0 +1,150 @@
+.offerings {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+
+  .seasonalOfferings {
+    flex: 1;
+    flex-direction: row;
+
+    .card {
+      padding: 35px;
+      height: 200px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      text-decoration: none;
+      color: #565656;
+
+      .offerContent {
+        .offerTitle {
+          font-size: 30px;
+          text-transform: uppercase;
+          font-weight: bold;
+          color: #565656;
+        }
+
+        .offerSubTitle {
+          font-size: 15px;
+        }
+      }
+
+      &.offer1 {
+        background-color: #f6f2df;
+        background-image: url("../../assets/images/offer1Background.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        margin-bottom: 15px;
+
+        .offerTitle {
+          margin-bottom: 10px;
+        }
+      }
+
+      &.offer2 {
+        background-color: #bde7f0;
+        background-image: url("../../assets/images/offer2.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        justify-content: center;
+        text-align: center;
+
+        .offerContent {
+          .offerTitle {
+            font-size: 35px;
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+
+  .productsOnSale {
+    flex: 1;
+    display: flex;
+    flex-direction: unset;
+    margin-left: 15px;
+
+    .product {
+      height: 100%;
+      flex: 1;
+      color: #2f2f2f;
+
+      &:last-child {
+        margin-left: 10px;
+      }
+
+      .productImage {
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+      }
+
+      .productDetails {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+
+        .productTitle {
+          font-size: 18px;
+          font-weight: 500;
+          margin-bottom: 10px;
+        }
+
+        .price {
+          font-size: 20px;
+          opacity: 0.8;
+          letter-spacing: 1px;
+
+          * {
+            font-family: 'Abril Fatface', cursive !important;
+          }
+
+          .productPrice {
+            display: inline-block;
+            color: #ff2929;
+            text-decoration: line-through;
+            margin-right: 10px;
+          }
+
+          .discountedPrice {
+            font-weight: 400;
+          }
+        }
+      }
+
+      .arrow {
+        display: flex;
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        padding: 15px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        box-shadow: 0 0 0 1px rgba(9, 30, 66, 0.08), 0 2px 4px 1px rgba(9, 30, 66, 0.08);
+      }
+
+      &:hover,
+      &:focus {
+        .arrow {
+          background: #4c9aff;
+
+          svg {
+            path {
+              stroke: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
