@@ -9,9 +9,11 @@ import LogoutIcon from '../../assets/icons/logout/component';
 import HelpIcon from '../../assets/icons/help/component';
 import ArrowLeftIcon from '../../assets/icons/arrows/arrowLeft';
 import { $id } from "../../utils/domUtils";
+import LogInIcon from '../../assets/icons/login/component';
 
 const Sidebar = () => {
   const [sidebarVisible, toggleSidebar] = useState(true);
+  const [sidebarStatusOnHover, toggleSidebarStatusOnHover] = useState(true);
 
   useEffect(() => {
     $id("root").classList = "";
@@ -24,7 +26,7 @@ const Sidebar = () => {
 
   return (
     <div className={`${styles.sidebar} ${sidebarVisible ? styles.sidebarFull : styles.sidebarMinimized}`}>
-      <button className={`${styles.sidebarToggler} ${sidebarVisible ? "" : styles.sidebarHidden}`} onClick={updateSideBarVisibility}>
+      <button aria-label="Sidebar toggle" className={`${styles.sidebarToggler} ${sidebarVisible ? "" : styles.sidebarHidden}`} onClick={updateSideBarVisibility}>
         <ArrowLeftIcon />
       </button>
       <div className={styles.navLinks}>
@@ -53,11 +55,19 @@ const Sidebar = () => {
           </span>
         </Link>
       </div>
-      <div className={styles.referralCard}>
+      <Link to="/referrals" className={styles.referralCard}>
         <p>Invite a friend and get a discount of <span className={styles.discount}>5%</span></p>
-      </div>
+      </Link>
       <div className={styles.bottomLinks}>
-        <button className={`${styles.logout} ${styles.bottomLink}`}>
+        <button aria-label="Logout" className={`${styles.logout} ${styles.bottomLink}`}>
+          <LogInIcon />
+          <span className={styles.linkText}>
+            Login
+          </span>
+        </button>
+
+        {/* ONLY IF USER LOGGER IN */}
+        <button aria-label="Logout" className={`${styles.logout} ${styles.bottomLink}`}>
           <LogoutIcon />
           <span className={styles.linkText}>
             Logout
