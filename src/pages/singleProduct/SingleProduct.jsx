@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Navigation from '../../components/Navigation/component';
-import Sidebar from '../../components/Sidebar/component';
+import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import Loader from '../../components/loader/Loader';
 import styles from './styles.module.scss';
 
@@ -25,9 +24,7 @@ const SingleProduct = ({ match }) => {
   const colors = ['#fff', '#000', '#da5255', '#5ab378', '#4a98d7', '#e2b484'];
 
   return (
-    <>
-      <Navigation />
-      <Sidebar />
+    <NavSideBarContainer>
       {product ? (
         <div className={styles.appContent}>
           <div className={styles.productImageContainer}>
@@ -50,7 +47,7 @@ const SingleProduct = ({ match }) => {
       ) : (
         <Loader />
       )}
-    </>
+    </NavSideBarContainer>
   );
 };
 
