@@ -10,8 +10,6 @@ const PageRoutes = () => (
         <Route component={() => <h2>404: Page not Found</h2>}></Route>
       </Switch>
     </Suspense>
-    <Switch>
-    </Switch>
   </Router>
 );
 

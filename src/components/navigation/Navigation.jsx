@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import languageAction from '../../redux/actions/languageAction';
 
 import Search from '../searchBar/SearchBar';
@@ -21,6 +21,8 @@ const Navigation = () => {
   };
 
   const dispatch = useDispatch();
+  const locale = useSelector((state) => state.language.locale);
+  console.log(flags[locale]);
 
   return (
     <header className={styles.header}>
@@ -33,7 +35,9 @@ const Navigation = () => {
         <button
           aria-label="Language Switcher"
           className={`${styles.navItem} ${styles.languageSwitcher}`}
+          onClick={() => dispatch(languageAction.changeLanguage('sp'))}
         >
+          <img src={flags[locale]} />
           <span className={styles.currentLocale}>En</span>
         </button>
         <div className={styles.localeListDropdown}></div>
