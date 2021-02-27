@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
+import Dropdown from '../../components/input/Dropdown';
 import Loader from '../../components/loader/Loader';
 import styles from './styles.module.scss';
 
@@ -42,6 +43,7 @@ const SingleProduct = ({ match }) => {
                 <ColorBox color={color} />
               ))}
             </div>
+            <Dropdown className={styles.Dropdown} title="Select Size" />
           </div>
         </div>
       ) : (
