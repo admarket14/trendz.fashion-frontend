@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+
 import MensClothingIcon from '../../assets/icons/sidebar/mensClothingIcon';
 import WomenClothingIcon from '../../assets/icons/sidebar/WomenClothingIcon';
 import JewelleryIcon from '../../assets/icons/sidebar/jewelleryIcon';
@@ -33,25 +35,25 @@ const Sidebar = () => {
         <Link to="/men" className={styles.navLink} data-target="mens">
           <MensClothingIcon />
           <span className={styles.linkText}>
-            Men's Clothing
+            <FormattedMessage id="mensClothing" />
           </span>
         </Link>
         <Link to="/women" className={styles.navLink} data-target="women">
           <WomenClothingIcon />
           <span className={styles.linkText}>
-            Women's Clothing
+            <FormattedMessage id="womenClothing" />
           </span>
         </Link>
         <Link to="/jewellery" className={styles.navLink} data-target="jewellery">
           <JewelleryIcon />
           <span className={styles.linkText}>
-            Jewellery
+            <FormattedMessage id="jewellery" />
           </span>
         </Link>
         <Link to="/electronics" className={styles.navLink} data-target="electronics">
           <ElectronicsIcon />
           <span className={styles.linkText}>
-            Electronics
+            <FormattedMessage id="electronics" />
           </span>
         </Link>
       </div>
