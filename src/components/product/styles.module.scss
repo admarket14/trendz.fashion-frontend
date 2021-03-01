@@ -1,0 +1,112 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100%;
+  color: #2f2f2f;
+  margin-right: 25px;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 0 0 1px rgba(9, 30, 66, 0.08), 0 2px 4px 1px rgba(9, 30, 66, 0.08);
+
+  &:last-child {
+    margin-left: 10px;
+  }
+
+  .productImage {
+    border-radius: 10px;
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    @media only screen and (max-width: 900px) {
+      height: 500px;
+    }
+    @media screen and (max-width: 480px) {
+      width: 300px;
+      height: 300px;
+    }
+    @media screen and (max-width: 320px) {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  .productDetails {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+
+    .productTitle {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 20px;
+      letter-spacing: 1px;
+
+      * {
+        font-family: 'Abril Fatface', cursive !important;
+      }
+
+      .productPrice {
+        display: inline-block;
+        font-weight: 400;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      .productTitle {
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+      .price {
+        font-size: 10px;
+        opacity: 1;
+      }
+    }
+  }
+
+  .arrow {
+    display: flex;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(9, 30, 66, 0.08), 0 2px 4px 1px rgba(9, 30, 66, 0.08);
+
+    @media screen and (max-width: 480px) {
+      bottom: 7px;
+      right: 7px;
+      padding: 7px;
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .arrow {
+      background: #4c9aff;
+
+      svg {
+        path {
+          stroke: #fff;
+        }
+      }
+    }
+  }
+}

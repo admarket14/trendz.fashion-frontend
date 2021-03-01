@@ -49,14 +49,23 @@ body {
   #root {
     position: relative;
     height: 100%;
-    transition: all 0.3s ease-in-out;
+    
+    &.loaded {
+      transition: all 0.3s ease-in-out;
+    }
 
     &.sidebarOpen {
       padding: 60px 0 0 250px;
+      @media only screen and (max-width: 900px) {
+        padding: 50px 0 0 75px;
+      }
     }
 
     &.sidebarMinimized {
       padding: 60px 0 0 75px;
+      @media only screen and (max-width: 900px) {
+        padding: 50px 0 0 75px;
+      }
     }
   }
 }
