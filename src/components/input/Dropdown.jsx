@@ -2,17 +2,17 @@ import React from 'react';
 
 import styles from './Dropdown.module.scss';
 
-const Dropdown = ({ title }) => {
+const Dropdown = ({ title, className, options = [] }) => {
   return (
-    <>
-      <h3>{title}</h3>
-      <select name="cars" id="cars">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
+    <div className={className}>
+      <h3 className="heading18Grey">{title}</h3>
+      <select className={styles.select} name="cars" id="cars">
+        <option value="">Select</option>
+        {options.map((item) => (
+          <option value={item.value}>{item.title}</option>
+        ))}
       </select>
-    </>
+    </div>
   );
 };
 
