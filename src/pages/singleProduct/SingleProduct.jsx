@@ -45,8 +45,8 @@ const SingleProduct = ({ match }) => {
           </div>
         </div>
       ) : (
-        <Loader />
-      )}
+          <Loader />
+        )}
     </NavSideBarContainer>
   );
 };

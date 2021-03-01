@@ -4,7 +4,14 @@ const hi = {
   mensClothing: "पुरुषों के कपड़े",
   womenClothing: "महिलाओं के वस्त्र",
   jewellery: "आभूषण",
-  electronics: "इलेक्ट्रानिक्स"
+  electronics: "इलेक्ट्रानिक्स",
+  fifty_percent_off: "पचास प्रतिशत तक छूट पाएं",
+  holiday_season: "छुट्टियों के मौसम के लिए",
+  thirty_percent_discount_shirts: "शर्ट पर तीस प्रतिशत तक छूट पाएं",
+  referral_message: "एक दोस्त को आमंत्रित करें और 5 प्रतिशत तक छूट पाएं",
+  login: "लॉग इन करें",
+  register: "रजिस्टर करें",
+  help_center: "सहायता केंद्र"
 };
 
 export default hi;

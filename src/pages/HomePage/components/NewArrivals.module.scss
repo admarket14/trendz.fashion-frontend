@@ -1,3 +1,28 @@
 .newArrivals {
-  display: flex;
+  display: block;
+  margin-top: 15px;
+
+  .title {
+    position: relative;
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bolder;
+    margin: 25px 0;
+    color: #0781ff;
+    &::after {
+      position: absolute;
+      content: "";
+      width: 25%;
+      height: 7px;
+      background: currentColor;
+      bottom: -15px;
+      left: 0;
+    }
+  }
+
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import MensClothingIcon from '../../assets/icons/sidebar/mensClothingIcon';
 import WomenClothingIcon from '../../assets/icons/sidebar/WomenClothingIcon';
@@ -14,17 +14,22 @@ import { $id } from "../../utils/domUtils";
 import LogInIcon from '../../assets/icons/login/component';
 
 const Sidebar = () => {
-  const [sidebarVisible, toggleSidebar] = useState(true);
-  const [sidebarStatusOnHover, toggleSidebarStatusOnHover] = useState(true);
+  const [sidebarVisible, toggleSidebar] = useState(() => (window.innerWidth >= 900));
+  const intl = useIntl();
 
   useEffect(() => {
-    $id("root").classList = "";
+    $id("root").classList.remove("sidebarOpen");
+    $id("root").classList.remove("sidebarMinimized");
     $id("root").classList.add(sidebarVisible ? "sidebarOpen" : "sidebarMinimized");
   }, [sidebarVisible]);
 
   const updateSideBarVisibility = (event) => {
     toggleSidebar(!sidebarVisible);
   };
+
+  function createReferralLocale() {
+    return { __html: intl.formatMessage({ id: 'referral_message', values: { className: styles.discount } }) };
+  }
 
   return (
     <div className={`${styles.sidebar} ${sidebarVisible ? styles.sidebarFull : styles.sidebarMinimized}`}>
@@ -58,27 +63,29 @@ const Sidebar = () => {
         </Link>
       </div>
       <Link to="/referrals" className={styles.referralCard}>
-        <p>Invite a friend and get a discount of <span className={styles.discount}>5%</span></p>
+        <p>
+          <FormattedMessage id="referral_message" />
+        </p>
       </Link>
       <div className={styles.bottomLinks}>
         <button aria-label="Logout" className={`${styles.logout} ${styles.bottomLink}`}>
           <LogInIcon />
           <span className={styles.linkText}>
-            Login
+            <FormattedMessage id="login" />
           </span>
         </button>
 
         {/* ONLY IF USER LOGGER IN */}
-        <button aria-label="Logout" className={`${styles.logout} ${styles.bottomLink}`}>
+        {/* <button aria-label="Logout" className={`${styles.logout} ${styles.bottomLink}`}>
           <LogoutIcon />
           <span className={styles.linkText}>
             Logout
           </span>
-        </button>
+        </button> */}
         <Link to="/help" className={`${styles.logout} ${styles.bottomLink}`}>
           <HelpIcon />
           <span className={styles.linkText}>
-            Help center
+            <FormattedMessage id="help_center" />
           </span>
         </Link>
       </div>

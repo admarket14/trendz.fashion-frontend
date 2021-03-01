@@ -1,11 +1,7 @@
 /* stylelint-disable selector-pseudo-class-no-unknown */
 
-.searchBar {
-  position: absolute;
+.searchBarContainer {
   width: 25px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
   .searchCircle,
   .searchStrokePath {

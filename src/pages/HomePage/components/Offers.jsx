@@ -1,22 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { $id, delay } from "../../../utils/domUtils";
 import productsOnSale from '../../../fakeData/productsOnSale';
 import styles from './Offers.module.scss';
 import ArrowRightIcon from '../../../assets/icons/arrows/arrowRight';
+import { FormattedMessage } from 'react-intl';
 
 const Offers = () => {
+
+  useEffect(() => {
+    delay(500).then(() => {
+      $id("root").classList.add("loaded");
+    });
+  }, []);
+
   return (
     <div className={styles.offerings}>
       <div className={styles.seasonalOfferings}>
         <Link to="products?offer=50" className={`${styles.card} ${styles.offer1}`}>
           <div className={styles.offerContent}>
-            <h2 className={styles.offerTitle}>Get up to 50%</h2>
-            <span className={styles.offerSubTitle}>For the holiday season</span>
+            <h2 className={styles.offerTitle}>
+              <FormattedMessage id="fifty_percent_off" />
+            </h2>
+            <span className={styles.offerSubTitle}>
+              <FormattedMessage id="holiday_season" />
+            </span>
           </div>
         </Link>
         <Link to="products?offer=30" className={`${styles.card} ${styles.offer2}`}>
           <div className={styles.offerContent}>
-            <h1 className={styles.offerTitle}>Get up to 30% off shirts</h1>
+            <h1 className={styles.offerTitle}>
+              <FormattedMessage id="thirty_percent_discount_shirts" />
+            </h1>
           </div>
         </Link>
       </div>
@@ -32,10 +47,10 @@ const Offers = () => {
               <h2 className={styles.productTitle}>{product.name}</h2>
               <div className={styles.price}>
                 <span className={styles.productPrice}>
-                  {product.currencySymbol}. {product.price}
+                  {product.currencySymbol} {product.price}
                 </span>
                 <span className={styles.discountedPrice}>
-                  {product.currencySymbol}. {product.discountedPrice}
+                  {product.currencySymbol} {product.discountedPrice}
                 </span>
               </div>
             </div>
