@@ -1,6 +1,7 @@
-import en from './en';
-import ja from './ja';
+import en from './en'; // english
+import hi from './hi'; // hindi
+import es from './es'; // spanish
 
-const appLanguage = { en, ja };
+const appLanguage = { en, hi, es };
 
 export default appLanguage;

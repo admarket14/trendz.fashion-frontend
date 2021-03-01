@@ -11,11 +11,6 @@ const App = () => {
   const dispatch = useDispatch();
   const locale = useSelector((state) => state.language.locale);
 
-  // here we will be getting locale lang from browser in set that in redux state
-  // useEffect(() => {
-  //   dispatch(languageAction.changeLanguage('en'));
-  // }, []);
-
   return (
     <IntlProvider locale={locale} messages={appLanguage[locale]}>
       <PageRoutes />
