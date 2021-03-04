@@ -1,0 +1,10 @@
+/* stylelint-disable selector-pseudo-class-no-unknown */
+
+.searchBarContainer {
+  width: 25px;
+
+  .searchCircle,
+  .searchStrokePath {
+    stroke: #200e32;
+  }
+}

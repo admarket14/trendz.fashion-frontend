@@ -1,0 +1,289 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  padding: 0 20px;
+  background: $white;
+  box-shadow: 0 2px 10px 0 $light-grey;
+  display: flex;
+  flex-direction: row;
+  z-index: 3;
+
+  @media only screen and (max-width: 900px) {
+    height: 50px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    padding: 0 5px;
+  }
+
+  .pageBranding {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
+    margin-right: auto;
+
+    .logoTitle {
+      display: inline-flex;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: bold;
+      color: #0070ff;
+
+      @media only screen and (max-width: 600px) {
+        font-size: 15px;
+      }
+    }
+
+    svg {
+      width: 25px;
+      height: 25px;
+      margin: 0 10px;
+    }
+  }
+
+  .searchWrap {
+    @include transform-center;
+
+    width: 500px;
+    border-radius: 50px;
+    @media (max-width: 1000px) {
+      width: 350px;
+    }
+
+    .searchLabel {
+      span {
+        display: none;
+      }
+
+      .input {
+        display: block;
+        width: 100%;
+        height: 40px;
+        border: 0;
+        border-radius: 50px;
+        padding: 5px 20px;
+        font-size: 15px;
+        outline: none;
+        letter-spacing: 1px;
+        text-align: center;
+        transition: 0.3s ease-in-out;
+        background: #fff;
+        color: #424242;
+        box-shadow: 0 0 0 1px #bbb;
+    
+        &:focus {
+          text-align: left;
+          box-shadow: 0 0 0 2px #139dff;
+        }
+      }
+    }
+
+    .searchButton, .closeSearchButton {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      top: 0;
+      right: 5px;
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+
+      svg {
+        width: 20px;
+      }
+    }
+
+    .closeSearchButton {
+      @media only screen and (min-width: 900px) {
+        display: none;
+      }
+    }
+
+    
+    @media only screen and (max-width: 900px) {
+      display: none;
+
+      &.showSearchBar {
+        display: block;
+        width: 100%;
+        z-index: 2;
+        position: absolute;
+        height: 100%;
+        padding: 0;
+
+        .searchLabel {
+          input {
+            height: 100%;
+            border-radius: 0;
+            text-align: left;
+            box-shadow: inset 0 0 0 1px #bbb;
+            
+            &:focus {
+              box-shadow: inset 0 0 0 2px #139dff;
+            }
+          }
+        }
+
+        .searchButton {
+          width: 50px;
+          height: 50px;
+          right: 50px;
+        }
+
+        .closeSearchButton {
+          @include transform-center;
+          left: calc(100% - 30px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .rightNavigation {
+    display: inline-flex;
+
+    .navItem {
+      display: inline-flex;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 60px;
+      align-items: center;
+      justify-content: center;
+
+      &:not(.languageSwitcherToggle)::before {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #045de9;
+        background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+        z-index: -1;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        @media only screen and (max-width: 900px) {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      svg {
+        width: 25px;
+        height: 25px;
+        margin: 0 10px;
+        z-index: 1;
+        @media only screen and (max-width: 900px) {
+          width: 20px;
+          height: 20px;
+          margin: 0 8px;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        &::before {
+          opacity: 1;
+        }
+
+        svg {
+          circle,
+          path {
+            stroke: #fff;
+          }
+        }
+      }
+
+      &.languageSwitcherToggle {
+        span.currentLocale {
+          text-transform: capitalize;
+          @media only screen and (max-width: 900px) {
+            display: none;
+          }
+        }
+
+        img {
+          max-width: 20px;
+          margin-right: 5px;
+          @media only screen and (max-width: 900px) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    
+    .languageSwitcher {
+      position: relative;
+
+      .languagesListDropdown {
+        position: absolute;
+        top: calc(100% - 2px);
+        right: 0;
+        z-index: 10;
+        display: none;
+        min-width: 150px;
+        padding: 0;
+        margin: 0;
+        border-radius: 5px;
+        list-style: none;
+        background: #fff;
+        box-shadow: 0 0 0 2px rgba(9, 30, 66, 0.08), 0 2px 3px 1px rgba(9, 30, 66, 0.08);
+        overflow: hidden;
+
+        .languageSwitcherButton {
+          display: flex;
+          background: #fff;
+          border: 0;
+          width: 100%;
+          text-align: left;
+          padding: 10px;
+          align-items: center;
+          cursor: pointer;
+
+          .flag {
+            max-width: 20px;
+            margin-right: 10px;
+          }
+
+          &:hover {
+            background: rgba(9, 30, 66, 0.08);
+          }
+        }
+      }
+
+      .languageSwitcherToggle {
+        width: auto;
+        height: 100%;
+        padding: 0 10px;
+      }
+
+      &.dropdownOpen .languagesListDropdown {
+        display: block;
+      }
+    }
+
+    .searchButton {
+      display: none;
+      @media only screen and (max-width: 900px) {
+        display: inline-flex;
+      }
+    }
+  }
+}
+
+// @media only screen and (max-width: 320px) {}
+// @media only screen and (max-width: 480px) {}
+// @media only screen and (max-width: 600px) {}
+// @media only screen and (max-width: 768px) {}
+// @media only screen and (max-width: 900px) {}

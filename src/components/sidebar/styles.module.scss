@@ -1,0 +1,224 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 60px;
+  width: 250px;
+  height: calc(100% - 60px);
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: inset -1px 0 0 0 #dcdcdc;
+  backdrop-filter: blur(5px) contrast(3);
+  z-index: 2;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease-in-out;
+
+  @media only screen and (max-width: 900px) {
+    top: 50px;
+  }
+
+  * {
+    transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .sidebarToggler {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    z-index: 1;
+    background: #fff;
+    border: 0;
+    right: calc(-25px / 2);
+    top: 50px;
+    box-shadow: 0 0 0 1px rgba(9, 30, 66, 0.08), 0 2px 4px 1px rgba(9, 30, 66, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    transform: scale(0) rotate(0deg);
+    @media only screen and (max-width: 900px) {
+      transform: scale(1) rotate(0deg);
+    }
+
+    &.sidebarHidden {
+      transform: scale(0) rotate(180deg);
+      @media only screen and (max-width: 900px) {
+        transform: scale(1) rotate(180deg);
+      }
+    }
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    &:hover,
+    &:focus {
+      background: #4c9aff;
+
+      svg {
+        path {
+          stroke: #fff;
+        }
+      }
+    }
+  }
+
+  @media only screen and (min-width: 900px) {
+    &:hover {
+      .sidebarToggler {
+        transform: scale(1) rotate(0deg);
+  
+        &.sidebarHidden {
+          transform: scale(1) rotate(180deg);
+        }
+      }
+    }
+  }
+
+  .linkText {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    transition-delay: 0.3s;
+  }
+
+  .navLinks {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .navLink {
+      display: flex;
+      align-items: center;
+      padding: 10px 5px;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: 0.3s ease-in-out;
+
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      .linkText {
+        display: block;
+        margin-left: 10px;
+        color: #5a5a5a;
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .referralCard {
+    position: relative;
+    display: flex;
+    margin: 15px;
+    margin-top: 50px;
+    height: 250px;
+    border-radius: 15px;
+    padding: 25px;
+    line-height: 1.5;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 15px;
+    text-decoration: none;
+    // pattern from Lea Verou https://projects.verou.me/css3patterns/#waves
+    background: radial-gradient(circle at 100% 50%, transparent 20%, rgba(255, 255, 255, 0.1) 21%, rgba(255, 255, 255, 0.1) 34%, transparent 35%, transparent), radial-gradient(circle at 0% 50%, transparent 20%, rgba(255, 255, 255, 0.1) 21%, rgba(255, 255, 255, 0.1) 34%, transparent 35%, transparent) 0 -50px;
+    background-color: #7b7fff;
+    background-size: 75px 100px;
+
+    .discount {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.45);
+      padding: 0 5px;
+      border-radius: 10px;
+    }
+  }
+
+  .bottomLinks {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    left: 0;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+
+    .bottomLink {
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      padding: 10px 5px;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: 0.3s ease-in-out;
+
+      svg {
+        width: 25px;
+        height: 25px;
+      }
+
+      .linkText {
+        display: block;
+        margin-left: 10px;
+        color: #5a5a5a;
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  &.sidebarFull {
+    .navLinks .navLink {
+      &[data-target="mens"] {
+        &:hover {
+          background: #ffefba;
+          background: linear-gradient(to right, #fff, #ffefba);
+        }
+      }
+
+      &[data-target="women"] {
+        &:hover {
+          background: #ffc4e3;
+          background: linear-gradient(to right, #fff, #ffc4e3);
+        }
+      }
+
+      &[data-target="jewellery"] {
+        &:hover {
+          background: #d0f5b1;
+          background: linear-gradient(to right, #fff, #d0f5b1);
+        }
+      }
+
+      &[data-target="electronics"] {
+        &:hover {
+          background: #f7e1e1;
+          background: linear-gradient(to right, #fff, #f7e1e1);
+        }
+      }
+    }
+  }
+
+  &.sidebarMinimized {
+    .navLinks .linkText,
+    .bottomLinks .linkText,
+    .referralCard {
+      opacity: 0;
+      visibility: hidden;
+      display: none;
+    }
+
+    width: 75px;
+  }
+}
