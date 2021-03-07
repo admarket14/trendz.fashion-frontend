@@ -1,86 +1,92 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { useSelector } from 'react-redux';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import Dropdown from '../../components/input/Dropdown';
 import Loader from '../../components/loader/Loader';
-import styles from './styles.module.scss';
-
-import productAction from '../../redux/actions/productAction';
 import PrimaryButton from '../../components/input/PrimaryButton';
 import OutlineButton from '../../components/input/OutlineButton';
+import ColorBox from './components/ColorBox';
+import ProductThumbnail from './components/ProductThumbnail';
+import styles from './styles.module.scss';
+
+import singleProductData from '../../fakeData/singleProduct/singleProductData';
 
 const SingleProduct = ({ match }) => {
   const productId = match.params.id;
-  const dispatch = useDispatch();
 
-  const product = useSelector((state) => state.product.product);
+  const locale = useSelector((state) => state.language.locale);
 
-  useEffect(() => {
-    dispatch(productAction.getProduct(productId));
-  }, []);
+  const singleProduct = singleProductData[locale];
 
-  const ColorBox = ({ color }) => (
-    <span className={styles.colorBox} style={{ background: color }}></span>
-  );
-
-  const colors = ['#fff', '#000', '#da5255', '#5ab378', '#4a98d7', '#e2b484'];
-
-  const quantityOptions = [
-    { title: '01', value: '01' },
-    { title: '02', value: '02' },
-    { title: '03', value: '03' },
-    { title: '04', value: '04' },
-    { title: '05', value: '05' },
-    { title: '06', value: '06' },
-    { title: '07', value: '07' },
-    { title: '08', value: '08' },
-    { title: '09', value: '09' },
-    { title: '10', value: '10' },
-  ];
-
-  const sizeOptions = [
-    { title: '06', value: '06' },
-    { title: '07', value: '07' },
-    { title: '08', value: '08' },
-    { title: '09', value: '09' },
-    { title: '10', value: '10' },
-    { title: '11', value: '11' },
-    { title: '12', value: '12' },
-  ];
+  const [productColor, setProductColor] = useState(singleProduct.colors[0]);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   return (
     <NavSideBarContainer>
-      {product ? (
-        <div className={styles.appContent}>
+      <div className={'row mx-0 px-2 ' + styles.appContent}>
+        <div className="col-lg-7 col-md-7 col-12">
           <div className={styles.productImageContainer}>
             <center>
-              <img src={product.image} className={styles.productImage} loading="lazy" />
+              <img
+                src={singleProduct.images[productColor][selectedImageIndex]}
+                className={styles.productImage}
+                loading="lazy"
+              />
             </center>
           </div>
-          <div className={styles.productDetailContainer}>
-            <h2 className={styles.productTitle}>{product.title}</h2>
-            <h2 className={styles.productPrice}>₹ {product.price}</h2>
-            <h2 className={styles.productDescription}>{product.description}</h2>
-            <h3 className="heading18Grey">Select Color</h3>
-            <div className={styles.flexRow}>
-              {colors.map((color) => (
-                <ColorBox key={color} color={color} />
-              ))}
-            </div>
-            <div className={styles.flexRow}>
-              <Dropdown className={styles.dropdown} options={sizeOptions} title="Select Size" />
-              <Dropdown className={styles.dropdown} options={quantityOptions} title="Quantity" />
-            </div>
-            <div className={styles.flexRow}>
-              <PrimaryButton title="Add to cart" className={styles.addToCartButton} />
-              {/* <OutlineButton title="F" className={styles.favoriteButton} /> */}
-            </div>
+          <div className="row">
+            {singleProduct.images[productColor].map((image, index) => (
+              <ProductThumbnail
+                image={image}
+                onClick={() => setSelectedImageIndex(index)}
+                selected={index === selectedImageIndex}
+              />
+            ))}
           </div>
         </div>
-      ) : (
-          <Loader />
-        )}
+        <div className="col-lg-5 col-md-5 col-12 mt-lg-0 mt-md-0 mt-4">
+          <h2 className={styles.productTitle}>{singleProduct.name}</h2>
+          <h2 className={styles.productPrice}>₹ {singleProduct.price}</h2>
+          <h2 className={styles.productDescription}>{singleProduct.description}</h2>
+          <h3 className="heading18Grey">
+            <FormattedMessage id="select_color" />
+          </h3>
+          <div className={styles.flexRow}>
+            {singleProduct.colors.map((color) => (
+              <ColorBox
+                key={color}
+                color={color}
+                onClick={() => setProductColor(color)}
+                selected={color === productColor}
+              />
+            ))}
+          </div>
+          <div className={styles.flexRow}>
+            <Dropdown
+              className={styles.dropdown}
+              options={singleProduct.size}
+              title={<FormattedMessage id="select_size" />}
+            />
+            <Dropdown
+              className={styles.dropdown}
+              options={singleProduct.quantity}
+              title={<FormattedMessage id="quantity" />}
+            />
+          </div>
+          <div className={styles.flexRow}>
+            <PrimaryButton
+              title={<FormattedMessage id="add_cart" />}
+              className={styles.addToCartButton}
+            />
+            {/* <OutlineButton title="F" className={styles.favoriteButton} /> */}
+          </div>
+          <div className="heading18Grey" style={{ fontSize: 15, textDecoration: 'underline' }}>
+            <FormattedMessage id="free_shipping" />
+          </div>
+        </div>
+      </div>
     </NavSideBarContainer>
   );
 };

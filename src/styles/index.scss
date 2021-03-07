@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 @import '../styles/variables';
 @import 'reset';
+@import 'bootstrap-grid.css';
 @import 'mixins';
 
 body {
@@ -74,6 +75,6 @@ body {
 .heading18Grey {
   font-size: 18px;
   font-weight: bold;
-  color: $light-grey;
+  color: $medium-grey;
   margin: 25px 0px 10px 0px;
 }

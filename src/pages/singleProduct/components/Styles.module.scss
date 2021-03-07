@@ -1,0 +1,19 @@
+@import '../../../styles/variables';
+
+.colorBox {
+  height: 25px;
+  width: 25px;
+  border-radius: 5px;
+  border: $light-grey 0.5px solid;
+  margin-right: 10px;
+}
+
+.productThumbnail {
+  border: $light-grey 1px solid;
+  border-radius: 10px;
+}
+
+.selectedProductThumbnail {
+  border: $light-blue 1px solid;
+  border-radius: 10px;
+}
