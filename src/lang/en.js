@@ -17,6 +17,18 @@ const en = {
   select_size: 'Select Size',
   quantity: 'Quantity',
   free_shipping: 'Free shipping and Free Returns',
+  login_with_google: 'Login with Google',
+  login_with_fb: 'Login with Facebook',
+  login_with_your_account: 'Login to your account',
+  access_recommendations: 'Get access to your Orders, Wishlist and Recommendations',
+  email_or_username: 'Username/ Mobile No. / Email address',
+  password: 'Password',
+  username_prompt: 'Enter your Username/ Mobile No. / Email address',
+  password_prompt: 'Enter your password',
+  remember_me: 'Remember me',
+  forgot_password: 'Forgot password?',
+  create_account: 'Create account',
+  alternate_login: 'Or login with your account',
 };
 
 export default en;

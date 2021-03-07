@@ -17,6 +17,19 @@ const es = {
   select_size: 'Selecciona el tamaño',
   quantity: 'Cantidad',
   free_shipping: 'Envío gratis y devoluciones gratis',
+  login_with_google: 'Iniciar sesión con Google ',
+  login_with_fb: 'Iniciar sesión con Facebook ',
+  login_with_your_account: 'Ingrese a su cuenta ',
+  access_recommendations: 'Obtenga acceso a sus pedidos, lista de deseos y recomendaciones',
+  email_or_username: 'Nombre de usuario / número de móvil. / Dirección de correo electrónico ',
+  password: 'contraseña',
+  password_prompt: 'Ingresa tu contraseña ',
+  username_prompt:
+    'Ingresa tu Nombre de usuario / número de móvil. / Dirección de correo electrónico ',
+  remember_me: 'Recuérdame',
+  forgot_password: 'Se te olvidó tu contraseña?',
+  create_account: 'crea una cuenta',
+  alternate_login: 'O inicie sesión con su cuenta',
 };
 
 export default es;

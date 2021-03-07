@@ -30,20 +30,12 @@
     margin-right: auto;
 
     .logoTitle {
-      display: inline-flex;
-      font-size: 20px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-weight: bold;
-      color: $another-blue;
-
-      @media only screen and (max-width: 600px) {
-        font-size: 15px;
-      }
+      font-size: 0;
+      position: absolute;
+      left: -999999px;
     }
 
     svg {
-      width: 25px;
       height: 25px;
       margin: 0 10px;
     }
@@ -146,15 +138,19 @@
           align-items: center;
           justify-content: center;
         }
+
+        & + .rightNavigation {
+          display: none;
+        }
       }
     }
   }
 
   .rightNavigation {
-    display: inline-flex;
+    display: flex;
 
     .navItem {
-      display: inline-flex;
+      display: flex;
       background: none;
       border: none;
       cursor: pointer;
@@ -225,6 +221,14 @@
 
     .languageSwitcher {
       position: relative;
+      .navItem {
+        display: block;
+
+        img,
+        .currentLocale {
+          vertical-align: middle;
+        }
+      }
 
       .languagesListDropdown {
         position: absolute;
@@ -254,6 +258,10 @@
           .flag {
             max-width: 20px;
             margin-right: 10px;
+          }
+
+          span:lang(hi) {
+            font-weight: normal !important;
           }
 
           &:hover {
