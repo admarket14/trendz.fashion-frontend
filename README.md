@@ -1,6 +1,6 @@
 ![Screenshot from 2021-03-08 01-01-03](https://user-images.githubusercontent.com/48173231/110252183-2eb95d80-7faa-11eb-8be8-c8eae8ed82c3.png)
 
-### Ecommerce Fontend build on React, Redux
+### Ecommerce Fontend build on React
 
 **Landing Page**
 ![Screenshot from 2021-03-08 01-19-37](https://user-images.githubusercontent.com/48173231/110252667-8062e780-7fac-11eb-80b2-3257668ec2b1.png)
@@ -34,6 +34,11 @@
 - Scss
 - React
 - Redux
+
+## Tests
+For snapshot testing
+
+    $ npm test
 
 ## Mentor
 - https://github.com/ArfatSalman
