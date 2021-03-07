@@ -19,6 +19,11 @@ const PageRoutes = () => (
           path="/search"
           component={lazy(() => import('../pages/searchPage/SearchPage'))}
         />
+        <Route
+          exact
+          path="/shop/men"
+          component={lazy(() => import("../pages/products/men"))}
+        />
         <Route component={() => <h2>404: Page not Found</h2>}></Route>
       </Switch>
     </Suspense>
