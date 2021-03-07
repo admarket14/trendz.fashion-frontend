@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
-import languageAction from '../../redux/actions/languageAction';
 
 import styles from './styles.module.scss';
 import CartIcon from '../../assets/icons/cart/cartIcon';
@@ -11,12 +10,17 @@ import Logo from '../../assets/icons/logo/logo';
 import SearchIcon from '../../assets/icons/search-icon/searchIcon';
 import CloseIcon from '../../assets/icons/close/closeIcon';
 
+import languageAction from '../../redux/actions/languageAction';
+
 import UKFlag from '../../assets/images/countryFlags/UKFlag.png';
 import IndiaFlag from '../../assets/images/countryFlags/IndianFlag.png';
 import spainFlag from '../../assets/images/countryFlags/spainFlag.png';
 
 const Navigation = () => {
+  const history = useHistory();
+  const { pathname, search } = history.location;
   const intl = useIntl();
+
   const flags = {
     en: UKFlag,
     hi: IndiaFlag,
@@ -34,17 +38,32 @@ const Navigation = () => {
 
   const [languageDropdown, toggleLanguageDropdown] = useState(false);
   const [showSearchBar, toggleSearchBar] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const updateLocale = (language) => {
     dispatch(languageAction.changeLanguage(language));
   };
 
   useEffect(() => {
-    // console.log("Mounted");
-    return () => {
-      // console.log("UNMounted");
-    };
-  }, []);
+    if (pathname === '/search') {
+      const searchQueryByUrl = search.split('?q=')[1];
+      setSearchQuery(searchQueryByUrl);
+    } else {
+      // ! tried to empty search field on url change but didn't work
+      // ! YouTube having same issue
+      setSearchQuery('');
+    }
+  }, [pathname]);
+
+  const handleInput = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    handleSearch(query);
+  };
+
+  const handleSearch = (query) => {
+    history.push(`/search?q=${query}`);
+  };
 
   return (
     <header className={styles.header}>
@@ -61,9 +80,15 @@ const Navigation = () => {
             placeholder={intl.formatMessage({ id: 'search' })}
             className={styles.input}
             lang={locale}
+            value={searchQuery}
+            onChange={handleInput}
           />
         </label>
-        <button aria-label="Search" className={styles.searchButton}>
+        <button
+          onClick={() => handleSearch(searchQuery)}
+          aria-label="Search"
+          className={styles.searchButton}
+        >
           <SearchIcon container="searchBarContainer" />
         </button>
         <button

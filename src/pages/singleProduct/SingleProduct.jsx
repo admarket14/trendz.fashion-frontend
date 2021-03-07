@@ -9,7 +9,7 @@ import PrimaryButton from '../../components/input/PrimaryButton';
 import OutlineButton from '../../components/input/OutlineButton';
 import ColorBox from './components/ColorBox';
 import ProductThumbnail from './components/ProductThumbnail';
-import styles from './styles.module.scss';
+import styles from './Styles.module.scss';
 
 import singleProductData from '../../fakeData/singleProduct/singleProductData';
 
