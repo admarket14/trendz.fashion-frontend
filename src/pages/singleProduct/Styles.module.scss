@@ -11,17 +11,13 @@
 .productImageContainer {
   border: $light-grey 1px solid;
   border-radius: 20px;
-  padding: 40px;
-  width: 60%;
 }
 
 .productImage {
-  height: 400px;
-}
-
-.productDetailContainer {
-  width: 40%;
-  padding: 0px 40px;
+  max-height: 400px;
+  max-width: 100%;
+  border-radius: 20px;
+  height: auto;
 }
 
 .productTitle {
@@ -38,15 +34,8 @@
 .productDescription {
   font-size: 16px;
   color: $medium-grey;
+  line-height: 20px;
   margin-bottom: 20px;
-}
-
-.colorBox {
-  height: 25px;
-  width: 25px;
-  border-radius: 5px;
-  border: $light-grey 0.5px solid;
-  margin-right: 10px;
 }
 
 .flexRow {

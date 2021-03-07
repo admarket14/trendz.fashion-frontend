@@ -21,14 +21,9 @@ const NavSideBarContainer = ({ children }) => {
 
   return (
     <>
-      <Navigation />
       <Sidebar openLogin={openLogin} />
       <div className={styles.appContent}>{children}</div>
-      <LogIn
-        onCloseLogin={closeLogin}
-        isVisible={loginVisible}
-        locale={locale}
-      />
+      <LogIn onCloseLogin={closeLogin} isVisible={loginVisible} locale={locale} />
     </>
   );
 };

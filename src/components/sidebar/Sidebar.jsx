@@ -35,8 +35,9 @@ const Sidebar = ({ openLogin }) => {
 
   return (
     <div
-      className={`${styles.sidebar} ${sidebarVisible ? styles.sidebarFull : styles.sidebarMinimized
-        }`}
+      className={`${styles.sidebar} ${
+        sidebarVisible ? styles.sidebarFull : styles.sidebarMinimized
+      }`}
     >
       <button
         aria-label="Sidebar toggle"
