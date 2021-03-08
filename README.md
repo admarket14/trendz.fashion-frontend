@@ -2,6 +2,11 @@
 
 ### Ecommerce Fontend build on React
 
+**Production Server** :  https://trendz.fashion
+
+**Development Server** :  https://staging.trendz.fashion
+
+
 **Landing Page**
 ![Screenshot from 2021-03-08 01-19-37](https://user-images.githubusercontent.com/48173231/110252667-8062e780-7fac-11eb-80b2-3257668ec2b1.png)
 
@@ -36,9 +41,13 @@
 - Redux
 
 ## Tests
-For snapshot testing
+For Snapshot testing
 
     $ npm test
+
+For End to End testing
+
+    $ npm run cypress
 
 ## Mentor
 - https://github.com/ArfatSalman
