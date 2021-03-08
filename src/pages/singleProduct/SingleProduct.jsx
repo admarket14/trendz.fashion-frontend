@@ -65,11 +65,13 @@ const SingleProduct = ({ match }) => {
           </div>
           <div className={styles.flexRow}>
             <Dropdown
+              dataTestId="sizeDropdown"
               className={styles.dropdown}
               options={singleProduct.size}
               title={<FormattedMessage id="select_size" />}
             />
             <Dropdown
+              dataTestId="quantityDropdown"
               className={styles.dropdown}
               options={singleProduct.quantity}
               title={<FormattedMessage id="quantity" />}
