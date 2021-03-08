@@ -40,6 +40,7 @@ const SingleProduct = ({ match }) => {
             {singleProduct.images[productColor].map((image, index) => (
               <ProductThumbnail
                 image={image}
+                key={index}
                 onClick={() => setSelectedImageIndex(index)}
                 selected={index === selectedImageIndex}
               />

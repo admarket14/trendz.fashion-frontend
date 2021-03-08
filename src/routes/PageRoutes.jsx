@@ -1,11 +1,13 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Preloader from '../components/loader/Preloader/Preloader';
 
 import Navigation from '../components/navigation/Navigation';
+import Sidebar from "../components/sidebar/Sidebar";
 
 const PageRoutes = () => (
   <Router>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Preloader />}>
       <Navigation />
       <Switch>
         <Route exact path="/" component={lazy(() => import('../pages/HomePage/HomePage'))} />
@@ -22,7 +24,27 @@ const PageRoutes = () => (
         <Route
           exact
           path="/shop/men"
-          component={lazy(() => import("../pages/products/men"))}
+          component={lazy(() => import("../pages/products/products"))}
+        />
+        <Route
+          exact
+          path="/shop/women"
+          component={lazy(() => import("../pages/products/products"))}
+        />
+        <Route
+          exact
+          path="/shop/jewellery"
+          component={lazy(() => import("../pages/products/products"))}
+        />
+        <Route
+          exact
+          path="/shop/electronics"
+          component={lazy(() => import("../pages/products/products"))}
+        />
+        <Route
+          exact
+          path="/help"
+          component={lazy(() => import("../pages/help/help"))}
         />
         <Route component={() => <h2>404: Page not Found</h2>}></Route>
       </Switch>

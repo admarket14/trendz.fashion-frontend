@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Navigation from '../navigation/Navigation';
+import Preloader from '../loader/Preloader/Preloader';
 import Sidebar from '../sidebar/Sidebar';
 import LogIn from '../login/login';
 import styles from './styles.module.scss';
