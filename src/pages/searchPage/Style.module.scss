@@ -1,9 +1,6 @@
 @import '../../styles/variables';
 
 .newArrivals {
-  display: block;
-  margin-top: 15px;
-
   .title {
     position: relative;
     display: inline-block;
@@ -23,8 +20,11 @@
   }
 
   .products {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
+    gap: 25px;
     margin-top: 25px;
   }
 }

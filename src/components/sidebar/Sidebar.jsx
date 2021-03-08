@@ -35,9 +35,8 @@ const Sidebar = ({ openLogin }) => {
 
   return (
     <div
-      className={`${styles.sidebar} ${
-        sidebarVisible ? styles.sidebarFull : styles.sidebarMinimized
-      }`}
+      className={`${styles.sidebar} ${sidebarVisible ? styles.sidebarFull : styles.sidebarMinimized
+        }`}
     >
       <button
         aria-label="Sidebar toggle"
@@ -48,7 +47,7 @@ const Sidebar = ({ openLogin }) => {
       </button>
       <div className={styles.navLinks}>
         <Link
-          to="/men"
+          to="/shop/men"
           data-test-id="menCategory"
           className={styles.navLink}
           data-target="mens"
@@ -62,7 +61,7 @@ const Sidebar = ({ openLogin }) => {
           </span>
         </Link>
         <Link
-          to="/women"
+          to="/shop/women"
           data-test-id="womenCategory"
           className={styles.navLink}
           data-target="women"
@@ -75,7 +74,7 @@ const Sidebar = ({ openLogin }) => {
           </span>
         </Link>
         <Link
-          to="/jewellery"
+          to="/shop/jewellery"
           data-test-id="jewelleryCategory"
           className={styles.navLink}
           data-target="jewellery"
@@ -89,7 +88,7 @@ const Sidebar = ({ openLogin }) => {
           </span>
         </Link>
         <Link
-          to="/electronics"
+          to="/shop/electronics"
           data-test-id="electronicsCategory"
           className={styles.navLink}
           data-target="electronics"

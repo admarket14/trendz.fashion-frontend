@@ -9,7 +9,7 @@ const Dropdown = ({ title, className, dataTestId, options = [] }) => {
       <select data-test-id={dataTestId} className={styles.select}>
         <option value="">Select</option>
         {options.map((item) => (
-          <option value={item}>{item}</option>
+          <option value={item} key={item}>{item}</option>
         ))}
       </select>
     </div>
