@@ -2,14 +2,14 @@ import React from 'react';
 
 import styles from './Dropdown.module.scss';
 
-const Dropdown = ({ title, className, options = [] }) => {
+const Dropdown = ({ title, className, dataTestId, options = [] }) => {
   return (
     <div className={className}>
       <h3 className="heading18Grey">{title}</h3>
-      <select className={styles.select} name="cars" id="cars">
+      <select data-test-id={dataTestId} className={styles.select}>
         <option value="">Select</option>
         {options.map((item) => (
-          <option value={item.value}>{item.title}</option>
+          <option value={item} key={item}>{item}</option>
         ))}
       </select>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from "./styles.module.scss";
-import googleLogo from "../../assets/images/sso/google.svg";
-import facebookLogo from "../../assets/images/sso/facebook.svg";
+import styles from './styles.module.scss';
+import googleLogo from '../../assets/images/sso/google.svg';
+import facebookLogo from '../../assets/images/sso/facebook.svg';
 import ArrowRightIcon from '../../assets/icons/arrows/arrowRight';
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -15,16 +15,17 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale }) => {
           <div className={styles.title} lang={locale}>
             <FormattedMessage id="login" />
           </div>
-          <button
-            className={styles.closeLogin}
-            onClick={closeLogin}
-          >
+          <button data-test-id="closeModal" className={styles.closeLogin} onClick={closeLogin}>
             &times;
           </button>
         </div>
         <div className={styles.content}>
-          <h2 className={styles.heading} lang={locale}><FormattedMessage id="login_with_your_account" /></h2>
-          <h2 className={styles.subHeading} lang={locale}><FormattedMessage id="access_recommendations" /></h2>
+          <h2 className={styles.heading} lang={locale}>
+            <FormattedMessage id="login_with_your_account" />
+          </h2>
+          <h2 className={styles.subHeading} lang={locale}>
+            <FormattedMessage id="access_recommendations" />
+          </h2>
           <div className={styles.ssoContainer}>
             <button className={styles.LoginWithGoogleButton}>
               <div className={styles.buttonContent} lang={locale}>
@@ -40,7 +41,9 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale }) => {
             </button>
           </div>
           <div className={styles.legend} lang={locale}>
-            <span lang={locale}><FormattedMessage id="alternate_login" /></span>
+            <span lang={locale}>
+              <FormattedMessage id="alternate_login" />
+            </span>
           </div>
           <div className={styles.form}>
             <div className={styles.fieldSet}>
@@ -48,7 +51,13 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale }) => {
                 <FormattedMessage id="email_or_username" />
               </label>
               <div className={styles.inputWrap}>
-                <input id="loginUsername" type="text" autoFocus placeholder={intl.formatMessage({ id: 'username_prompt' })} />
+                <input
+                  id="loginUsername"
+                  data-test-id="loginEmail"
+                  type="text"
+                  autoFocus
+                  placeholder={intl.formatMessage({ id: 'username_prompt' })}
+                />
               </div>
             </div>
             <div className={styles.fieldSet}>
@@ -56,7 +65,12 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale }) => {
                 <FormattedMessage id="password" />
               </label>
               <div className={styles.inputWrap}>
-                <input id="loginPassword" type="password" placeholder={intl.formatMessage({ id: 'password_prompt' })} />
+                <input
+                  data-test-id="loginPassword"
+                  id="loginPassword"
+                  type="password"
+                  placeholder={intl.formatMessage({ id: 'password_prompt' })}
+                />
               </div>
             </div>
             <div className={`${styles.fieldSet} ${styles.loginActions}`} lang={locale}>
@@ -64,7 +78,7 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale }) => {
                 <input type="checkbox" />
                 <FormattedMessage id="remember_me" />
               </label>
-              <button className={styles.logInButton}>
+              <button className={styles.logInButton} data-test-id="loginButton">
                 <FormattedMessage id="login" />
                 <ArrowRightIcon />
               </button>

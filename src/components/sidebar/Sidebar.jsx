@@ -47,7 +47,8 @@ const Sidebar = ({ openLogin }) => {
       </button>
       <div className={styles.navLinks}>
         <Link
-          to="/men"
+          to="/shop/men"
+          data-test-id="menCategory"
           className={styles.navLink}
           data-target="mens"
           data-tooltip={intl.formatMessage({ id: 'mensClothing' })}
@@ -60,7 +61,8 @@ const Sidebar = ({ openLogin }) => {
           </span>
         </Link>
         <Link
-          to="/women"
+          to="/shop/women"
+          data-test-id="womenCategory"
           className={styles.navLink}
           data-target="women"
           data-tooltip={intl.formatMessage({ id: 'womenClothing' })}
@@ -72,7 +74,8 @@ const Sidebar = ({ openLogin }) => {
           </span>
         </Link>
         <Link
-          to="/jewellery"
+          to="/shop/jewellery"
+          data-test-id="jewelleryCategory"
           className={styles.navLink}
           data-target="jewellery"
           data-tooltip={intl.formatMessage({ id: 'jewellery' })}
@@ -85,7 +88,8 @@ const Sidebar = ({ openLogin }) => {
           </span>
         </Link>
         <Link
-          to="/electronics"
+          to="/shop/electronics"
+          data-test-id="electronicsCategory"
           className={styles.navLink}
           data-target="electronics"
           data-tooltip={intl.formatMessage({ id: 'electronics' })}
@@ -100,6 +104,7 @@ const Sidebar = ({ openLogin }) => {
       </div>
       <Link
         to="/referrals"
+        data-test-id="referralsPage"
         className={styles.referralCard}
         lang={locale}
         data-tooltip={intl.formatMessage({ id: 'referral_message' })}
@@ -133,6 +138,7 @@ const Sidebar = ({ openLogin }) => {
         </button> */}
         <Link
           to="/help"
+          data-test-id="helpPage"
           className={`${styles.logout} ${styles.bottomLink}`}
           data-tooltip={intl.formatMessage({ id: 'help_center' })}
           data-tooltip-direction="right"

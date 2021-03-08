@@ -3,6 +3,7 @@
 .newArrivals {
   display: block;
   margin-top: 15px;
+  margin-bottom: 30px;
 
   .title {
     position: relative;
@@ -23,8 +24,11 @@
   }
 
   .products {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
+    gap: 25px;
     margin-top: 25px;
   }
 }

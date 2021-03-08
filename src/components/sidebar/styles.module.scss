@@ -234,7 +234,7 @@
 
   &.sidebarMinimized {
     .navLinks .navLink {
-      &[data-target="mens"] {
+      &[data-target='mens'] {
         &:hover {
           svg {
             filter: drop-shadow(5px 10px 5px #ffefba);
@@ -242,7 +242,7 @@
         }
       }
 
-      &[data-target="women"] {
+      &[data-target='women'] {
         &:hover {
           svg {
             filter: drop-shadow(5px 10px 5px #ffc4e3);
@@ -250,7 +250,7 @@
         }
       }
 
-      &[data-target="jewellery"] {
+      &[data-target='jewellery'] {
         &:hover {
           svg {
             filter: drop-shadow(5px 10px 5px #d0f5b1);
@@ -258,7 +258,7 @@
         }
       }
 
-      &[data-target="electronics"] {
+      &[data-target='electronics'] {
         &:hover {
           svg {
             filter: drop-shadow(5px 10px 5px #f7e1e1);
@@ -272,9 +272,10 @@
     [data-tooltip] {
       position: relative;
 
-      &::before, &::after {
+      &::before,
+      &::after {
         text-transform: none;
-        font-size: .9em;
+        font-size: 0.9em;
         line-height: 1;
         user-select: none;
         pointer-events: none;
@@ -307,20 +308,22 @@
       }
 
       &:hover {
-        &::before, &::after {
+        &::before,
+        &::after {
           display: block;
         }
       }
     }
 
     [data-tooltip=''] {
-      &::before, &::after {
+      &::before,
+      &::after {
         display: none !important;
       }
     }
 
     [data-tooltip] {
-      &[data-tooltip-direction^="right"] {
+      &[data-tooltip-direction^='right'] {
         &::before {
           top: 50%;
           border-left-width: 0;
@@ -337,13 +340,15 @@
       }
 
       &:not([data-tooltip-direction]):hover {
-        &::before, &::after {
+        &::before,
+        &::after {
           animation: tooltips-vert 300ms ease-out forwards;
         }
       }
 
-      &[data-tooltip-direction^="right"]:hover {
-        &::before, &::after {
+      &[data-tooltip-direction^='right']:hover {
+        &::before,
+        &::after {
           animation: tooltips-horz 300ms ease-out forwards;
         }
       }
@@ -351,14 +356,14 @@
 
     @keyframes tooltips-vert {
       to {
-        opacity: .9;
+        opacity: 0.9;
         transform: translate(-50%, 0);
       }
     }
 
     @keyframes tooltips-horz {
       to {
-        opacity: .9;
+        opacity: 0.9;
         transform: translate(0, -50%);
       }
     }

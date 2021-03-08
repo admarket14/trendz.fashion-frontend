@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Navigation from '../navigation/Navigation';
+import Preloader from '../loader/Preloader/Preloader';
 import Sidebar from '../sidebar/Sidebar';
 import LogIn from '../login/login';
 import styles from './styles.module.scss';
@@ -21,14 +22,9 @@ const NavSideBarContainer = ({ children }) => {
 
   return (
     <>
-      <Navigation />
       <Sidebar openLogin={openLogin} />
       <div className={styles.appContent}>{children}</div>
-      <LogIn
-        onCloseLogin={closeLogin}
-        isVisible={loginVisible}
-        locale={locale}
-      />
+      <LogIn onCloseLogin={closeLogin} isVisible={loginVisible} locale={locale} />
     </>
   );
 };
