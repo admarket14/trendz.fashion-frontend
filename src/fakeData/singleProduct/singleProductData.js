@@ -1,23 +1,23 @@
-import red1 from './image/nike shoes red/red1.jpg';
-import red2 from './image/nike shoes red/red2.jpg';
-import red3 from './image/nike shoes red/red3.jpg';
-import red4 from './image/nike shoes red/red4.jpg';
-import red5 from './image/nike shoes red/red5.jpg';
-import red6 from './image/nike shoes red/red6.jpg';
+import red1 from './image/nike shoes red/red1.webp';
+import red2 from './image/nike shoes red/red2.webp';
+import red3 from './image/nike shoes red/red3.webp';
+import red4 from './image/nike shoes red/red4.webp';
+import red5 from './image/nike shoes red/red5.webp';
+import red6 from './image/nike shoes red/red6.webp';
 
-import black1 from './image/nike shoes black/black1.jpg';
-import black2 from './image/nike shoes black/black2.jpg';
-import black3 from './image/nike shoes black/black3.jpg';
-import black4 from './image/nike shoes black/black4.jpg';
-import black5 from './image/nike shoes black/black5.jpg';
-import black6 from './image/nike shoes black/black6.jpg';
+import black1 from './image/nike shoes black/black1.webp';
+import black2 from './image/nike shoes black/black2.webp';
+import black3 from './image/nike shoes black/black3.webp';
+import black4 from './image/nike shoes black/black4.webp';
+import black5 from './image/nike shoes black/black5.webp';
+import black6 from './image/nike shoes black/black6.webp';
 
-import grey1 from './image/nike shoes grey/grey1.jpg';
-import grey2 from './image/nike shoes grey/grey2.jpg';
-import grey3 from './image/nike shoes grey/grey3.jpg';
-import grey4 from './image/nike shoes grey/grey4.jpg';
-import grey5 from './image/nike shoes grey/grey5.jpg';
-import grey6 from './image/nike shoes grey/grey6.jpg';
+import grey1 from './image/nike shoes grey/grey1.webp';
+import grey2 from './image/nike shoes grey/grey2.webp';
+import grey3 from './image/nike shoes grey/grey3.webp';
+import grey4 from './image/nike shoes grey/grey4.webp';
+import grey5 from './image/nike shoes grey/grey5.webp';
+import grey6 from './image/nike shoes grey/grey6.webp';
 
 const singleProductData = {
   en: {

@@ -12,9 +12,9 @@ import CloseIcon from '../../assets/icons/close/closeIcon';
 
 import languageAction from '../../redux/actions/languageAction';
 
-import UKFlag from '../../assets/images/countryFlags/UKFlag.png';
-import IndiaFlag from '../../assets/images/countryFlags/IndianFlag.png';
-import spainFlag from '../../assets/images/countryFlags/spainFlag.png';
+import UKFlag from '../../assets/images/countryFlags/UKFlag.webp';
+import IndiaFlag from '../../assets/images/countryFlags/IndianFlag.webp';
+import spainFlag from '../../assets/images/countryFlags/spainFlag.webp';
 
 const Navigation = () => {
   const history = useHistory();
