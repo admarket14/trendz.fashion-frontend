@@ -23,23 +23,8 @@ const PageRoutes = () => (
         />
         <Route
           exact
-          path="/shop/men"
-          component={lazy(() => import("../pages/products/products"))}
-        />
-        <Route
-          exact
-          path="/shop/women"
-          component={lazy(() => import("../pages/products/products"))}
-        />
-        <Route
-          exact
-          path="/shop/jewellery"
-          component={lazy(() => import("../pages/products/products"))}
-        />
-        <Route
-          exact
-          path="/shop/electronics"
-          component={lazy(() => import("../pages/products/products"))}
+          path="/shop/:category"
+          component={lazy(() => import("../pages/shopping/shopping"))}
         />
         <Route
           exact

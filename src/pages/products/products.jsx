@@ -7,7 +7,7 @@ import Product from '../../components/product/Product';
 import Loader from '../../components/loader/Loader';
 import styles from './styles.module.scss';
 
-const Home = () => {
+const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
 
@@ -36,4 +36,4 @@ const Home = () => {
   }
 };
 
-export default Home;
+export default Products;
