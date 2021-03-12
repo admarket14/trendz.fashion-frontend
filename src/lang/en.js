@@ -29,6 +29,9 @@ const en = {
   forgot_password: 'Forgot password?',
   create_account: 'Create account',
   alternate_login: 'Or login with your account',
+  enter_keyword_to_search: 'Enter keyword to search',
+  no_result_found: 'No result found',
+  search_result_for: 'Search result for ',
 };
 
 export default en;

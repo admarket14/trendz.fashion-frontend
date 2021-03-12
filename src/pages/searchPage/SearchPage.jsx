@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import Product from '../../components/product/Product';
@@ -28,7 +29,9 @@ const Search = ({ location }) => {
   const NoQueryView = () =>
     !search && (
       <section className={styles.newArrivals}>
-        <h2 className={styles.title}>Enter keyword to search</h2>
+        <h2 className={styles.title}>
+          <FormattedMessage id="enter_keyword_to_search" />
+        </h2>
         <img src={NoQueryImage} className={styles.infoImage} />
       </section>
     );
@@ -38,12 +41,17 @@ const Search = ({ location }) => {
     products &&
     (products.length === 0 ? (
       <section className={styles.newArrivals}>
-        <h2 className={styles.title}>No result found</h2>
+        <h2 className={styles.title}>
+          <FormattedMessage id="no_result_found" />
+        </h2>
         <img src={NoResult} className={styles.infoImage} />
       </section>
     ) : (
       <section className={styles.newArrivals}>
-        <h2 className={styles.title}>Search result for {search}</h2>
+        <h2 className={styles.title}>
+          <FormattedMessage id="search_result_for" />
+          {search}
+        </h2>
         <div className={styles.products}>
           {products.map((product) => (
             <Product product={product} key={product.id} />
