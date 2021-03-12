@@ -1,61 +1,78 @@
 import React, { useState, useEffect } from 'react';
 
-import NavSideBarContainer from "../../components/navSidebarContainer/NavSideBarContainer";
+import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import Loader from '../../components/loader/Loader';
 import styles from './styles.module.scss';
 import BreadCrumbs from '../../components/breadCrumbs/breadCrumbs';
-import SortIcon from "../../assets/icons/Sort/sortIcon";
-import FilterIcon from "../../assets/icons/filter/filterIcon";
+import SortIcon from '../../assets/icons/Sort/sortIcon';
+import FilterIcon from '../../assets/icons/filter/filterIcon';
 import CloseIcon from '../../assets/icons/close/closeIcon';
+import Product from '../../components/product/Product';
+import allProducts from '../../fakeData/fakiApiAllProducts';
 import Products from '../products/products';
 
 const Shopping = ({ match }) => {
   const { category } = match.params;
-  const breadCrumbs = [{
-    name: "Home", 
-    route: "/"
-  }];
+  const breadCrumbs = [
+    {
+      name: 'Home',
+      route: '/',
+    },
+  ];
 
   switch (category) {
-    case "men":
+    case 'men':
       breadCrumbs.push({
-        name: "Mens clothing",
+        name: 'Mens clothing',
         route: match.url,
-        currentPage: true
+        currentPage: true,
       });
       break;
-    case "women":
+    case 'women':
       breadCrumbs.push({
         name: "Women's clothing",
         route: match.url,
-        currentPage: true
+        currentPage: true,
       });
       break;
-    case "jewellery":
+    case 'jewellery':
       breadCrumbs.push({
-        name: "Jewellery",
+        name: 'Jewellery',
         route: match.url,
-        currentPage: true
+        currentPage: true,
       });
       break;
-    case "electronics":
+    case 'electronics':
       breadCrumbs.push({
-        name: "Electronics",
+        name: 'Electronics',
         route: match.url,
-        currentPage: true
+        currentPage: true,
       });
       break;
   }
 
   const [sortDropdown, toggleSortDropdown] = useState(false);
   const [filterMenu, toggleFilterMenu] = useState(false);
+  const [products, setProducts] = useState([]);
   // const [filterMenu, toggleFilterMenu] = useState(false);
 
   useEffect(() => {
-    return () => {
-      console.log("unmounted");
-    };
-  }, []);
+    switch (category) {
+      case 'men':
+        setProducts(allProducts.filter((product) => product.category === 'men clothing'));
+        break;
+      case 'women':
+        setProducts(allProducts.filter((product) => product.category === 'women clothing'));
+        break;
+      case 'jewellery':
+        setProducts(allProducts.filter((product) => product.category === 'jewelery'));
+        break;
+      case 'electronics':
+        setProducts(allProducts.filter((product) => product.category === 'electronics'));
+        break;
+    }
+    return () => {};
+  }, [category]);
 
   return (
     <>
@@ -63,20 +80,19 @@ const Shopping = ({ match }) => {
         <div className={styles.shopping}>
           <div className={styles.filtersAndBreadcrumbs}>
             <div className={styles.row}>
-              <BreadCrumbs breadCrumbsList={breadCrumbs}/>
+              <BreadCrumbs breadCrumbsList={breadCrumbs} />
               <div className={styles.filterSection}>
-                <button 
-                  className={styles.filterToggler}
-                  onClick={() => toggleFilterMenu(true)}
-                >
-                  <FilterIcon/>
+                <button className={styles.filterToggler} onClick={() => toggleFilterMenu(true)}>
+                  <FilterIcon />
                   Filter
                   <span className={styles.filterCountSection}>
                     <span className={styles.filterCount}>5</span>
                   </span>
                 </button>
-                <div className={`${styles.sortSection} ${sortDropdown ? styles.show : styles.hide}`}>
-                  <button 
+                <div
+                  className={`${styles.sortSection} ${sortDropdown ? styles.show : styles.hide}`}
+                >
+                  <button
                     className={styles.sortToggler}
                     onClick={() => toggleSortDropdown(!sortDropdown)}
                   >
@@ -115,15 +131,21 @@ const Shopping = ({ match }) => {
                 </div>
               </div>
             </div> */}
+            <div className={styles.products}>
+              {products.map((product) => (
+                <Product product={product} key={product.id} />
+              ))}
+            </div>
           </div>
         </div>
       </NavSideBarContainer>
-      <div className={`${styles.offCanvasFilters} ${filterMenu ? styles.showFilters : styles.hideFilters}`}>
-        <button 
-          className={styles.closeFiltersMenu}
-          onClick={() => toggleFilterMenu(false)}
-        >
-          <CloseIcon/>
+      <div
+        className={`${styles.offCanvasFilters} ${
+          filterMenu ? styles.showFilters : styles.hideFilters
+        }`}
+      >
+        <button className={styles.closeFiltersMenu} onClick={() => toggleFilterMenu(false)}>
+          <CloseIcon />
         </button>
         Blah blah blah
       </div>

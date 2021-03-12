@@ -1,4 +1,4 @@
-@import "../../styles/mixins";
+@import '../../styles/mixins';
 
 .shopping {
   position: relative;
@@ -12,11 +12,11 @@
       margin: 0 -25px;
       margin-bottom: 45px;
       padding: 0 25px;
-  
+
       * {
         transition: all 0.15s ease-in-out;
       }
-  
+
       .filterToggler,
       .sortToggler {
         position: relative;
@@ -31,37 +31,37 @@
         color: #393f48;
         box-shadow: 0 0 0 1px #ccc;
         cursor: pointer;
-  
+
         * {
           vertical-align: middle;
         }
-  
+
         svg {
           width: 12px;
           margin-right: 5px;
-  
+
           path {
             stroke: #393f48;
           }
         }
-  
+
         &:hover,
         &:focus {
           background: #006eff;
           box-shadow: none;
           color: #fff;
-  
+
           svg path {
             stroke: #fff;
           }
         }
       }
-  
+
       .filterSection {
         display: flex;
         flex-direction: row;
         gap: 10px;
-  
+
         .filterToggler {
           position: relative;
           padding-right: 40px;
@@ -74,7 +74,7 @@
             color: #fff;
             @include transform-center;
             left: calc(100% - 20px);
-  
+
             .filterCount {
               color: #006eff;
               font-weight: bolder;
@@ -82,26 +82,27 @@
               @include transform-center;
             }
           }
-  
-          &:hover, &:focus {
+
+          &:hover,
+          &:focus {
             .filterCountSection {
               background: #fff;
               color: #006eff;
             }
           }
         }
-  
+
         .sortSection {
           position: relative;
           display: flex;
           place-content: center;
-  
+
           .sortToggler {
             .currentSortType {
               font-weight: bold;
             }
           }
-    
+
           .sortByDropdown {
             position: absolute;
             top: calc(100% + 10px);
@@ -113,13 +114,12 @@
             border-radius: 15px;
             list-style: none;
             background: #fff;
-            box-shadow: 0 3px 35px rgba(0, 0, 0, 0.1),
-            0 14px 24px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 35px rgba(0, 0, 0, 0.1), 0 14px 24px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transform: translateY(10px);
             opacity: 0;
             visibility: hidden;
-  
+
             li {
               display: flex;
               .sortBy {
@@ -132,7 +132,7 @@
                 margin-bottom: 1px;
                 border-radius: 5px;
                 cursor: pointer;
-  
+
                 &:focus,
                 &:hover {
                   background: #006eff;
@@ -141,7 +141,7 @@
               }
             }
           }
-  
+
           &.show {
             .sortByDropdown {
               visibility: visible;
@@ -162,7 +162,7 @@
   width: 400px;
   background: #fff;
   box-shadow: inset 1px 0 0 0 #cecece;
-  transition: all 0.25s cubic-bezier(.86, 0, .07, 1);
+  transition: all 0.25s cubic-bezier(0.86, 0, 0.07, 1);
 
   .closeFiltersMenu {
     position: absolute;
@@ -178,13 +178,13 @@
     padding-left: 5px;
     cursor: pointer;
     transition-delay: 0.15s;
-    transition: all 0.25s cubic-bezier(.68, -0.55, .27, 1.55);
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
     svg {
       width: 20px;
     }
   }
-  
+
   &.hideFilters {
     right: -400px;
 
@@ -200,4 +200,13 @@
       right: 100%;
     }
   }
+}
+
+.products {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 25px;
+  margin-top: 25px;
 }
