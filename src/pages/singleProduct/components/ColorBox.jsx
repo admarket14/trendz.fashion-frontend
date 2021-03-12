@@ -5,7 +5,7 @@ import styles from './Styles.module.scss';
 
 const ColorBox = ({ color, selected, onClick }) => (
   <span
-    tabindex="0"
+    tabIndex="0"
     role="button"
     data-test-id="productColor"
     className={styles.colorBox}

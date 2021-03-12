@@ -5,7 +5,7 @@ const ProductThumbnail = ({ image, selected, onClick }) => {
   return (
     <div className="col-2 mt-3">
       <div
-        tabindex="0"
+        tabIndex="0"
         role="button"
         data-test-id="productThumbnail"
         className={selected ? styles.selectedProductThumbnail : styles.productThumbnail}

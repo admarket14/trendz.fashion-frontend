@@ -70,7 +70,7 @@ const SingleProduct = ({ match }) => {
             <div className="row">
               <div className="col-lg-6 col-md-6 col-6">
                 <Dropdown
-                  dataTestId="sizeDropdown"
+                  datatestid="sizeDropdown"
                   options={singleProduct.size}
                   title={<FormattedMessage id="select_size" />}
                 />
@@ -89,7 +89,7 @@ const SingleProduct = ({ match }) => {
                   <input
                     disabled={true}
                     type="text"
-                    dataTestId="quantityDropdown"
+                    data-test-id="quantityDropdown"
                     className={styles.quantityInput}
                     value={quantity}
                   />
