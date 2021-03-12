@@ -9,6 +9,7 @@ import PrimaryButton from '../../components/input/PrimaryButton';
 import OutlineButton from '../../components/input/OutlineButton';
 import ColorBox from './components/ColorBox';
 import ProductThumbnail from './components/ProductThumbnail';
+import HeartIcon from '../../assets/icons/heart/heart';
 import styles from './Styles.module.scss';
 
 import singleProductData from '../../fakeData/singleProduct/singleProductData';
@@ -21,6 +22,7 @@ const SingleProduct = ({ match }) => {
   const singleProduct = singleProductData[locale];
 
   const [productColor, setProductColor] = useState(singleProduct.colors[0]);
+  const [quantity, setQuantity] = useState(1);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   return (
@@ -64,26 +66,52 @@ const SingleProduct = ({ match }) => {
               />
             ))}
           </div>
-          <div className={styles.flexRow}>
-            <Dropdown
-              dataTestId="sizeDropdown"
-              className={styles.dropdown}
-              options={singleProduct.size}
-              title={<FormattedMessage id="select_size" />}
-            />
-            <Dropdown
-              dataTestId="quantityDropdown"
-              className={styles.dropdown}
-              options={singleProduct.quantity}
-              title={<FormattedMessage id="quantity" />}
-            />
-          </div>
-          <div className={styles.flexRow}>
-            <PrimaryButton
-              title={<FormattedMessage id="add_cart" />}
-              className={styles.addToCartButton}
-            />
-            {/* <OutlineButton title="F" className={styles.favoriteButton} /> */}
+          <div className="me-lg-5 pe-lg-5  me-0 pe-0">
+            <div className="row">
+              <div className="col-lg-6 col-md-6 col-6">
+                <Dropdown
+                  dataTestId="sizeDropdown"
+                  options={singleProduct.size}
+                  title={<FormattedMessage id="select_size" />}
+                />
+              </div>
+              <div className="col-lg-6 col-md-6 col-6">
+                <h3 className="heading18Grey">
+                  <FormattedMessage id="quantity" />
+                </h3>
+                <div className={styles.quantityInputContainer}>
+                  <button
+                    className={styles.quantityButton}
+                    onClick={() => setQuantity(quantity + 1)}
+                  >
+                    +
+                  </button>
+                  <input
+                    disabled={true}
+                    type="text"
+                    dataTestId="quantityDropdown"
+                    className={styles.quantityInput}
+                    value={quantity}
+                  />
+                  <button
+                    className={styles.quantityButton}
+                    onClick={() => setQuantity(quantity - 1)}
+                    disabled={quantity === 1}
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className={styles.buttonContainer}>
+              <PrimaryButton
+                title={<FormattedMessage id="add_cart" />}
+                className={styles.addToCartButton}
+              />
+              <button className={styles.addToWishlist}>
+                <HeartIcon />
+              </button>
+            </div>
           </div>
           <div className="heading18Grey" style={{ fontSize: 15, textDecoration: 'underline' }}>
             <FormattedMessage id="free_shipping" />

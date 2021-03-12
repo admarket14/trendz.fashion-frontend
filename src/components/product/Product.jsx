@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import HeartIcon from "../../assets/icons/heart/heart";
-import PlusIcon from "../../assets/icons/plus/plus";
+import HeartIcon from '../../assets/icons/heart/heart';
+import PlusIcon from '../../assets/icons/plus/plus';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const Product = ({ product }) => {
   return (
-    <div className={styles.product} key={product.id} tabIndex='1'>
+    <div className={styles.product} key={product.id} tabIndex="0">
       <Link to={`/product/${product.id}`} className={styles.productLink}>
         <div
           className={styles.productImage}
@@ -19,7 +19,7 @@ const Product = ({ product }) => {
           <h2 className={styles.productTitle}>{product.title}</h2>
           <div className={styles.price}>
             <span className={styles.productPrice}>
-              {product.currencySymbol || "$"} {product.price}
+              {product.currencySymbol || '$'} {product.price}
             </span>
           </div>
         </div>
@@ -33,7 +33,7 @@ const Product = ({ product }) => {
           <HeartIcon />
         </button>
       </div>
-    </div >
+    </div>
   );
 };
 
