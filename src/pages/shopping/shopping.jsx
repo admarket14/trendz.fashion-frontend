@@ -131,7 +131,7 @@ const Shopping = ({ match }) => {
                 </div>
               </div>
             </div> */}
-            <div className={styles.products}>
+            <div className="row">
               {products.map((product) => (
                 <Product product={product} key={product.id} />
               ))}

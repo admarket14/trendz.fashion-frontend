@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import productAction from '../../redux/actions/productAction';
 
-import NavSideBarContainer from "../../components/navSidebarContainer/NavSideBarContainer";
+import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import Product from '../../components/product/Product';
 import Loader from '../../components/loader/Loader';
 import styles from './styles.module.scss';
@@ -18,7 +18,7 @@ const Products = () => {
   if (products) {
     return (
       <NavSideBarContainer>
-        <div className={styles.products}>
+        <div className="row">
           {products.map((product) => (
             <Product product={product} key={product.id} />
           ))}

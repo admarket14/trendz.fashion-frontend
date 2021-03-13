@@ -44,7 +44,7 @@ const Search = ({ location }) => {
     ) : (
       <section className={styles.newArrivals}>
         <h2 className={styles.title}>Search result for {search}</h2>
-        <div className={styles.products}>
+        <div className="row">
           {products.map((product) => (
             <Product product={product} key={product.id} />
           ))}
