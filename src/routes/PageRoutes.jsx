@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Preloader from '../components/loader/Preloader/Preloader';
 
 import Navigation from '../components/navigation/Navigation';
-import Sidebar from "../components/sidebar/Sidebar";
+import Sidebar from '../components/sidebar/Sidebar';
 
 const PageRoutes = () => (
   <Router>
     <Suspense fallback={<Preloader />}>
       <Navigation />
       <Switch>
-        <Route exact path="/" component={lazy(() => import('../pages/HomePage/HomePage'))} />
+        <Route exact path="/" component={lazy(() => import('../pages/homePage/HomePage'))} />
         <Route
           exact
           path="/product/:id"
@@ -24,14 +24,11 @@ const PageRoutes = () => (
         <Route
           exact
           path="/shop/:category"
-          component={lazy(() => import("../pages/shopping/shopping"))}
+          component={lazy(() => import('../pages/shopping/Shopping'))}
         />
-        <Route
-          exact
-          path="/help"
-          component={lazy(() => import("../pages/help/help"))}
-        />
-        <Route component={() => <h2>404: Page not Found</h2>}></Route>
+        <Route exact path="/help" component={lazy(() => import('../pages/help/Help'))} />
+        <Route exact path="/setting" component={lazy(() => import('../pages/setting/Setting'))} />
+        <Route component={lazy(() => import('../pages/notFoundPage/NotFoundPage'))}></Route>
       </Switch>
     </Suspense>
   </Router>

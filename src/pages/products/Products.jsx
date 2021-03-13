@@ -5,7 +5,7 @@ import productAction from '../../redux/actions/productAction';
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import Product from '../../components/product/Product';
 import Loader from '../../components/loader/Loader';
-import styles from './styles.module.scss';
+import styles from './Styles.module.scss';
 
 const Products = () => {
   const dispatch = useDispatch();

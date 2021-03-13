@@ -32,6 +32,7 @@ const hi = {
   enter_keyword_to_search: 'खोजने के लिए कीवर्ड दर्ज करें',
   no_result_found: 'कोई परिणाम नहीं मिला',
   search_result_for: 'खोज के परिणाम ',
+  page_not_found: 'पृष्ठ नहीं मिला',
 };
 
 export default hi;

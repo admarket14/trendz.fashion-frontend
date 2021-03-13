@@ -9,9 +9,9 @@ import FilterIcon from '../../assets/icons/filter/filterIcon';
 import CloseIcon from '../../assets/icons/close/closeIcon';
 import Product from '../../components/product/Product';
 import allProducts from '../../fakeData/fakiApiAllProducts';
-import Products from '../products/products';
+import Products from '../products/Products';
 
-const Shopping = ({ match }) => {
+const Shopping = ({ match, history }) => {
   const { category } = match.params;
   const breadCrumbs = [
     {
@@ -49,6 +49,8 @@ const Shopping = ({ match }) => {
         currentPage: true,
       });
       break;
+    default:
+      history.push('/404');
   }
 
   const [sortDropdown, toggleSortDropdown] = useState(false);
