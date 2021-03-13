@@ -17,7 +17,7 @@ const Product = ({ product }) => {
             alt={product.title}
           />
           <div className={styles.productDetails}>
-            <h2 className={styles.productTitle}>{product.title}</h2>
+            <h2 className={styles.productTitle} title={product.title}>{product.title}</h2>
             <div className={styles.price}>
               <span className={styles.productPrice}>
                 {product.currencySymbol || '$'} {product.price}
