@@ -4,7 +4,7 @@ import productAction from '../../redux/actions/productAction';
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import styles from './Styles.module.scss';
 
-const Home = () => {
+const Help = () => {
   return (
     <NavSideBarContainer>
       <div className={styles.helpWrap}>HELP CENTER</div>
@@ -12,4 +12,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Help;
