@@ -7,7 +7,7 @@ import NoQueryImage from '../../assets/images/search/NoQuery.svg';
 import NoResult from '../../assets/images/search/NoResult.svg';
 import styles from './Style.module.scss';
 
-import AllProducts from '../../fakeData/fakiApiAllProducts';
+import AllProducts from '../../fakeData/fakeApiAllProducts';
 
 const Search = ({ location }) => {
   const search = location.search.split('?q=')[1];
