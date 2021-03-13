@@ -33,6 +33,16 @@ const en = {
   no_result_found: 'No result found',
   search_result_for: 'Search result for ',
   page_not_found: 'Page not found',
+  settings: 'Settings',
+  personal_details: 'Personal Details',
+  your_saved_cards: 'Your saved cards',
+  full_name: 'Full Name',
+  phone_number: 'Phone Number',
+  address: 'Address',
+  city: 'City',
+  pin_code: 'Pin Code',
+  state: 'State',
+  country: 'Country',
 };
 
 export default en;

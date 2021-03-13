@@ -33,6 +33,16 @@ const hi = {
   no_result_found: 'कोई परिणाम नहीं मिला',
   search_result_for: 'खोज के परिणाम ',
   page_not_found: 'पृष्ठ नहीं मिला',
+  settings: 'सेटिंग्स',
+  personal_details: 'व्यक्तिगत विवरण',
+  your_saved_cards: 'आपके सहेजे गए कार्ड',
+  full_name: 'पूरा नाम',
+  phone_number: 'फ़ोन नंबर',
+  address: 'पता',
+  city: 'शहर',
+  pin_code: 'पिन कोड',
+  state: 'राज्य',
+  country: 'देश',
 };
 
 export default hi;

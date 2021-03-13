@@ -34,6 +34,16 @@ const es = {
   no_result_found: 'No se han encontrado resultados',
   search_result_for: 'Resultado de búsqueda para ',
   page_not_found: 'Página no encontrada',
+  settings: 'Ajustes',
+  personal_details: 'Detalles personales',
+  your_saved_cards: 'Tus tarjetas guardadas',
+  full_name: 'nombre completo',
+  phone_number: 'Número de teléfono',
+  address: 'Dirección',
+  city: 'ciudad',
+  pin_code: 'Código PIN',
+  state: 'Expresar',
+  country: 'País',
 };
 
 export default es;
