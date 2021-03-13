@@ -10,7 +10,7 @@ const NotFoundPage = () => {
     <NavSideBarContainer>
       <section className={styles.newArrivals}>
         <h2 className={styles.title}>
-          <FormattedMessage id="enter_keyword_to_search" />
+          <FormattedMessage id="page_not_found" />
         </h2>
         <img src={NotFound} className={styles.infoImage} />
       </section>

@@ -32,6 +32,7 @@ const en = {
   enter_keyword_to_search: 'Enter keyword to search',
   no_result_found: 'No result found',
   search_result_for: 'Search result for ',
+  page_not_found: 'Page not found',
 };
 
 export default en;

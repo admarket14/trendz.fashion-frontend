@@ -5,7 +5,7 @@ import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBar
 import Product from '../../components/product/Product';
 import NoQueryImage from '../../assets/images/search/NoQuery.svg';
 import NoResult from '../../assets/images/search/NoResult.svg';
-import styles from './Style.module.scss';
+import styles from './Styles.module.scss';
 
 import AllProducts from '../../fakeData/fakiApiAllProducts';
 

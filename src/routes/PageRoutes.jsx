@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Preloader from '../components/loader/Preloader/Preloader';
 
 import Navigation from '../components/navigation/Navigation';
-import Sidebar from "../components/sidebar/Sidebar";
+import Sidebar from '../components/sidebar/Sidebar';
 
 const PageRoutes = () => (
   <Router>
@@ -24,14 +24,10 @@ const PageRoutes = () => (
         <Route
           exact
           path="/shop/:category"
-          component={lazy(() => import("../pages/shopping/shopping"))}
+          component={lazy(() => import('../pages/shopping/shopping'))}
         />
-        <Route
-          exact
-          path="/help"
-          component={lazy(() => import("../pages/help/help"))}
-        />
-        <Route component={() => <h2>404: Page not Found</h2>}></Route>
+        <Route exact path="/help" component={lazy(() => import('../pages/help/help'))} />
+        <Route component={lazy(() => import('../pages/notFoundPage/NotFoundPage'))}></Route>
       </Switch>
     </Suspense>
   </Router>

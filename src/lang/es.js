@@ -33,6 +33,7 @@ const es = {
   enter_keyword_to_search: 'Ingrese la palabra clave para buscar',
   no_result_found: 'No se han encontrado resultados',
   search_result_for: 'Resultado de búsqueda para ',
+  page_not_found: 'Página no encontrada',
 };
 
 export default es;
