@@ -29,6 +29,9 @@ const hi = {
   forgot_password: 'पासवर्ड भूल गए क्या?',
   create_account: 'नया अकाउंट बनाएं',
   alternate_login: 'या अपने अकाउंट से लॉगिन करें',
+  enter_keyword_to_search: 'खोजने के लिए कीवर्ड दर्ज करें',
+  no_result_found: 'कोई परिणाम नहीं मिला',
+  search_result_for: 'खोज के परिणाम ',
 };
 
 export default hi;

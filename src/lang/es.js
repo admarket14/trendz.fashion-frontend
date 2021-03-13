@@ -30,6 +30,9 @@ const es = {
   forgot_password: 'Se te olvidó tu contraseña?',
   create_account: 'crea una cuenta',
   alternate_login: 'O inicie sesión con su cuenta',
+  enter_keyword_to_search: 'Ingrese la palabra clave para buscar',
+  no_result_found: 'No se han encontrado resultados',
+  search_result_for: 'Resultado de búsqueda para ',
 };
 
 export default es;
