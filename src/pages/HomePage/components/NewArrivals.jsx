@@ -18,7 +18,7 @@ const NewArrivals = () => {
     return (
       <section className={styles.newArrivals}>
         <h2 className={styles.title}>New Arrivals</h2>
-        <div className={styles.products}>
+        <div className="row">
           {products.map((product) => (
             <Product product={product} key={product.id} />
           ))}

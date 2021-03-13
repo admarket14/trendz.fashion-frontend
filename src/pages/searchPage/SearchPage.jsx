@@ -52,7 +52,7 @@ const Search = ({ location }) => {
           <FormattedMessage id="search_result_for" />
           {search}
         </h2>
-        <div className={styles.products}>
+        <div className="row">
           {products.map((product) => (
             <Product product={product} key={product.id} />
           ))}
