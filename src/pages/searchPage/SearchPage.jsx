@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
+import Heading from '../../components/heading/Heading';
 import Product from '../../components/product/Product';
 import NoQueryImage from '../../assets/images/search/NoQuery.svg';
 import NoResult from '../../assets/images/search/NoResult.svg';
@@ -29,9 +30,9 @@ const Search = ({ location }) => {
   const NoQueryView = () =>
     !search && (
       <section className={styles.newArrivals}>
-        <h2 className={styles.title}>
+        <Heading>
           <FormattedMessage id="enter_keyword_to_search" />
-        </h2>
+        </Heading>
         <img src={NoQueryImage} className={styles.infoImage} />
       </section>
     );
@@ -41,17 +42,17 @@ const Search = ({ location }) => {
     products &&
     (products.length === 0 ? (
       <section className={styles.newArrivals}>
-        <h2 className={styles.title}>
+        <Heading>
           <FormattedMessage id="no_result_found" />
-        </h2>
+        </Heading>
         <img src={NoResult} className={styles.infoImage} />
       </section>
     ) : (
       <section className={styles.newArrivals}>
-        <h2 className={styles.title}>
+        <Heading>
           <FormattedMessage id="search_result_for" />
           {search}
-        </h2>
+        </Heading>
         <div className="row">
           {products.map((product) => (
             <Product product={product} key={product.id} />

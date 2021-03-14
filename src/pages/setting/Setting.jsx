@@ -1,57 +1,40 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
+import BillingForm from '../../components/billingForm/BillingForm';
+import Heading from '../../components/heading/Heading';
+import SubHeading from '../../components/heading/SubHeading';
 import Input from '../../components/input/Input';
 import TextArea from '../../components/input/TextArea';
-import PaymentCard from './components/PaymentCard';
-import styles from './Styles.module.scss';
 
 import AddCard from '../../assets/images/paymentCards/Addcard.svg';
 import VisaBlack from '../../assets/images/paymentCards/VisaBlack.svg';
 import VisaPurple from '../../assets/images/paymentCards/VisaPurple.svg';
 
 const Setting = () => {
+  const intl = useIntl();
+
+  const PaymentCard = ({ image }) => (
+    <div className="col-lg-2 col-md-3 col-sm-4 col-12 mb-3">
+      <img className="img-fluid" src={image} alt="" />
+    </div>
+  );
+
   return (
     <NavSideBarContainer>
-      <section className={styles.newArrivals}>
-        <h2 className={styles.title}>
+      <section>
+        <Heading>
           <FormattedMessage id="settings" />
-        </h2>
-        <h2 className={styles.subTitle}>
-          <FormattedMessage id="personal_details" />
-        </h2>
+        </Heading>
         <div className="row ">
           <div className="col-lg-8 col-12">
-            <div className="row ">
-              <div className="col-lg-6 col-md-6 col-12 mb-4">
-                <Input title={<FormattedMessage id="full_name" />} />
-              </div>
-              <div className="col-lg-6 col-md-6 col-12 mb-4">
-                <Input title={<FormattedMessage id="phone_number" />} />
-              </div>
-              <div className="col-12 mb-4">
-                <TextArea title={<FormattedMessage id="address" />} />
-              </div>
-
-              <div className="col-lg-6 col-md-6 col-12 mb-4">
-                <Input title={<FormattedMessage id="city" />} />
-              </div>
-              <div className="col-lg-6 col-md-6 col-12 mb-4">
-                <Input title={<FormattedMessage id="pin_code" />} />
-              </div>
-              <div className="col-lg-6 col-md-6 col-12 mb-4">
-                <Input title={<FormattedMessage id="state" />} />
-              </div>
-              <div className="col-lg-6 col-md-6 col-12 mb-4">
-                <Input title={<FormattedMessage id="country" />} />
-              </div>
-            </div>
+            <BillingForm title={intl.formatMessage({ id: 'personal_details' })} />
           </div>
         </div>
-        <h2 className={styles.subTitle}>
+        <SubHeading>
           <FormattedMessage id="your_saved_cards" />
-        </h2>
+        </SubHeading>
         <div className="row">
           <PaymentCard image={VisaPurple} />
           <PaymentCard image={VisaBlack} />
