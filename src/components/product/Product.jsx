@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import HeartIcon from '../../assets/icons/heart/heart';
 import PlusIcon from '../../assets/icons/plus/plus';
 
-import styles from './styles.module.scss';
+import styles from './Product.module.scss';
 
 const Product = ({ product }) => {
   return (
