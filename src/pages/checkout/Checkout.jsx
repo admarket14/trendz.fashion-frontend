@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import ProductHorizontal from '../../components/product/ProductHorizontal';
@@ -17,9 +17,7 @@ import VisaPurple from '../../assets/images/paymentCards/VisaPurple.svg';
 import AllProduct from '../../fakeData/fakeApiAllProducts';
 
 const Checkout = () => {
-  const intl = useIntl();
-
-  const products = [AllProduct[0], AllProduct[1]];
+  const products = [AllProduct[0], AllProduct[10]];
 
   const PaymentCard = ({ image }) => (
     <div className="col-lg-3 col-md-3 col-sm-4 col-12 mb-3">
@@ -43,20 +41,26 @@ const Checkout = () => {
       <section>
         <div className="row">
           <div className="col-lg-7 col-12 mb-5">
-            <Heading>Billing Details</Heading>
+            <Heading>
+              <FormattedMessage id="billing_details" />
+            </Heading>
             <div className={styles.billingContainer}>
-              <BillingForm title={intl.formatMessage({ id: 'personal_details' })} />
-              <SubHeading>Payment Method</SubHeading>
+              <BillingForm title={<FormattedMessage id="personal_details" />} />
+              <SubHeading>
+                <FormattedMessage id="payment_method" />
+              </SubHeading>
               <div className="row">
                 <div className="col-12">
                   <div className={styles.productContainer}>
-                    Card
+                    <FormattedMessage id="card" />
                     <img src={CardIcon} className={styles.alignRight} />
                   </div>
                 </div>
                 <div className="col-12">
                   <div className={styles.productContainer}>
-                    <SubHeading>Your Saved Cards</SubHeading>
+                    <SubHeading>
+                      <FormattedMessage id="your_saved_cards" />
+                    </SubHeading>
                     <div className="row">
                       <PaymentCard image={VisaPurple} />
                       <PaymentCard image={VisaBlack} />
@@ -66,7 +70,7 @@ const Checkout = () => {
                 </div>
                 <div className="col-12">
                   <div className={styles.productContainer}>
-                    Cash on delivery
+                    <FormattedMessage id="cash_on_delivery" />
                     <input type="checkbox" className={styles.alignRight} />
                   </div>
                 </div>
@@ -74,28 +78,30 @@ const Checkout = () => {
             </div>
           </div>
           <div className="col-lg-5 col-12 mb-5">
-            <Heading>Order Summary</Heading>
+            <Heading>
+              <FormattedMessage id="order_summary" />
+            </Heading>
             {products.map((product) => (
               <div className={styles.productContainer}>
                 <ProductHorizontal product={product} />
               </div>
             ))}
             <br />
-            <PriceContainer title="Subtotal" price="₹ 19,893.00" />
-            <PriceContainer title="Discount" price="₹ 1,499.00" />
-            <PriceContainer title="Tax @ 12.5%" price="₹ 3,125.00" />
-            <PriceContainer title="Delivery Fee" price="₹ 0" />
+            <PriceContainer title={<FormattedMessage id="subTotal" />} price="₹ 19,893.00" />
+            <PriceContainer title={<FormattedMessage id="discount" />} price="₹ 1,499.00" />
+            <PriceContainer title={<FormattedMessage id="tax" />} price="₹ 3,125.00" />
+            <PriceContainer title={<FormattedMessage id="delivery_fee" />} price="₹ 0" />
             <div className="row px-lg-5 px-md-4 px-sm-2 px-2 ">
               <hr className="my-4" />
               <div className="col-6">
-                <span className={styles.priceTitle}>Total</span>
+                <span className={styles.priceTitle}>{<FormattedMessage id="total" />}</span>
               </div>
               <div className="col-6" align="right">
                 <span className={styles.priceTotal}>₹ 23,893.00</span>
               </div>
               <hr className="my-4" />
               <br />
-              <PrimaryButton title="PLACE ORDER" />
+              <PrimaryButton title={<FormattedMessage id="place_order" />} />
             </div>
           </div>
         </div>

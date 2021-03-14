@@ -43,6 +43,18 @@ const hi = {
   pin_code: 'पिन कोड',
   state: 'राज्य',
   country: 'देश',
+  billing_details: 'बिलिंग विवरण',
+  payment_method: 'भुगतान का तरीका',
+  card: 'कार्ड',
+  cash_on_delivery: 'डिलवरी पर नकदी',
+  order_summary: 'खरीद सारांश',
+  subTotal: 'उप-योग',
+  discount: 'छूट',
+  tax: 'कर @ 12.5%',
+  delivery_fee: 'वितरण शुल्क',
+  total: 'योग',
+  place_order: 'खरीदें',
+  remove_from_cart: 'कार्ट से निकालें',
 };
 
 export default hi;

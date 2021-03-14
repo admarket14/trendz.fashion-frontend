@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import DeleteIcon from '../../assets/icons/delete/DeleteIcon';
 import styles from './ProductHorizontal.module.scss';
@@ -40,7 +41,9 @@ const ProductHorizontal = ({ product }) => {
         </div>
         <div className={styles.flexRow}>
           <DeleteIcon />
-          <h2 className={styles.removeCart}>Remove from Cart</h2>
+          <h2 className={styles.removeCart}>
+            <FormattedMessage id="remove_from_cart" />
+          </h2>
         </div>
       </div>
     </div>
