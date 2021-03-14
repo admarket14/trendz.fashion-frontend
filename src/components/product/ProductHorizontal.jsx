@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import DeleteIcon from '../../assets/icons/delete/DeleteIcon';
 import styles from './ProductHorizontal.module.scss';
@@ -38,9 +39,13 @@ const ProductHorizontal = ({ product }) => {
           <QuantityButton />
           <h2 className={styles.price}>₹ {product.price * quantity}</h2>
         </div>
-        <div className={styles.flexRow}>
-          <DeleteIcon />
-          <h2 className={styles.removeCart}>Remove from Cart</h2>
+        <div tabIndex="0" className={styles.removeCartButton}>
+          <div className={styles.flexRow}>
+            <DeleteIcon />
+            <h2 className={styles.removeCart}>
+              <FormattedMessage id="remove_from_cart" />
+            </h2>
+          </div>
         </div>
       </div>
     </div>

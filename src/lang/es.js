@@ -44,6 +44,18 @@ const es = {
   pin_code: 'Código PIN',
   state: 'Expresar',
   country: 'País',
+  billing_details: 'Detalles de facturación',
+  payment_method: 'Método de pago',
+  card: 'Tarjeta',
+  cash_on_delivery: 'Contra reembolso',
+  order_summary: 'Resumen de la orden',
+  subTotal: 'Total parcial',
+  discount: 'Descuento',
+  tax: 'Impuesto @ 12.5%',
+  delivery_fee: 'Gastos de envío',
+  total: 'Total',
+  place_order: 'Realizar pedido',
+  remove_from_cart: 'Quitar del carrito',
 };
 
 export default es;

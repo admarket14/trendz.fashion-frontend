@@ -43,6 +43,18 @@ const en = {
   pin_code: 'Pin Code',
   state: 'State',
   country: 'Country',
+  billing_details: 'Billing Details',
+  payment_method: 'Payment Method',
+  card: 'Card',
+  cash_on_delivery: 'Cash on delivery',
+  order_summary: 'Order Summary',
+  subTotal: 'Subtotal',
+  discount: 'Discount',
+  tax: 'Tax @ 12.5%',
+  delivery_fee: 'Delivery Fee',
+  total: 'Total',
+  place_order: 'Place Order',
+  remove_from_cart: 'Remove from Cart',
 };
 
 export default en;
