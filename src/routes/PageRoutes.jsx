@@ -28,6 +28,11 @@ const PageRoutes = () => (
         />
         <Route exact path="/help" component={lazy(() => import('../pages/help/Help'))} />
         <Route exact path="/setting" component={lazy(() => import('../pages/setting/Setting'))} />
+        <Route
+          exact
+          path="/checkout"
+          component={lazy(() => import('../pages/checkout/Checkout'))}
+        />
         <Route component={lazy(() => import('../pages/notFoundPage/NotFoundPage'))}></Route>
       </Switch>
     </Suspense>
