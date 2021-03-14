@@ -14,7 +14,7 @@ import AddCard from '../../assets/images/paymentCards/Addcard.svg';
 import VisaBlack from '../../assets/images/paymentCards/VisaBlack.svg';
 import VisaPurple from '../../assets/images/paymentCards/VisaPurple.svg';
 
-import AllProduct from '../../fakeData/fakiApiAllProducts';
+import AllProduct from '../../fakeData/fakeApiAllProducts';
 
 const Checkout = () => {
   const intl = useIntl();
