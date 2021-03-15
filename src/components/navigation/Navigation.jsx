@@ -150,9 +150,11 @@ const Navigation = () => {
           </ul>
         </div>
 
-        <button 
-          aria-label="Cart" 
-          className={`${styles.navItem} ${styles.cartButton} ${cartCount > 0 ? styles.cartAvailable : ""}`} 
+        <button
+          aria-label="Cart"
+          className={`${styles.navItem} ${styles.cartButton} ${
+            cartCount > 0 ? styles.cartAvailable : ''
+          }`}
           data-count={cartCount}
           onClick={() => dispatch(cartAction.openCartSection(!cart.cartSectionOpened))}
         >
@@ -160,9 +162,13 @@ const Navigation = () => {
         </button>
 
         {/* ONLY IF USER LOGGER IN */}
-        {/* <button aria-label="Sign In" className={`${styles.navItem} ${styles.profileButton}`}>
+        <button
+          aria-label="Sign In"
+          onClick={() => history.push('/setting')}
+          className={`${styles.navItem} ${styles.profileButton}`}
+        >
           <ProfileIcon />
-        </button> */}
+        </button>
       </div>
     </header>
   );
