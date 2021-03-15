@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import Loader from '../../components/loader/Loader';
-import styles from './Styles.module.scss';
+import styles from './styles.module.scss';
 import BreadCrumbs from '../../components/breadCrumbs/breadCrumbs';
 import SortIcon from '../../assets/icons/Sort/sortIcon';
 import FilterIcon from '../../assets/icons/filter/filterIcon';
