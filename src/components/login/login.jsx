@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import googleLogo from '../../assets/images/sso/google.svg';
 import facebookLogo from '../../assets/images/sso/facebook.svg';
 import ArrowRightIcon from '../../assets/icons/arrows/arrowRight';
+import { signInWithGoogle } from "../../services/firebase";
 import { FormattedMessage, useIntl } from 'react-intl';
 
-const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale }) => {
+const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
   const intl = useIntl();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const beforeSignIn = () => {
+    setIsLoading(true);
+  };
+
+  const afterSignIn = (localData) => {
+    setIsLoading(false);
+    afterLogin(localData.currentUser);
+    closeLogin();
+  };
 
   return (
     <div className={`${styles.loginModal} ${isVisible ? styles.open : styles.close}`}>
-      <div className={styles.loginContainer}>
+      <div className={`${styles.loginContainer} ${isLoading ? styles.signInProgress : ""}`}>
         <div className={styles.header}>
           <div className={styles.title} lang={locale}>
             <FormattedMessage id="login" />
@@ -27,7 +40,10 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale }) => {
             <FormattedMessage id="access_recommendations" />
           </h2>
           <div className={styles.ssoContainer}>
-            <button className={styles.LoginWithGoogleButton}>
+            <button 
+              className={styles.LoginWithGoogleButton}
+              onClick={() => signInWithGoogle(beforeSignIn, afterSignIn)}
+            >
               <div className={styles.buttonContent} lang={locale}>
                 <img src={googleLogo} alt="Google Inc." />
                 <FormattedMessage id="login_with_google" />
