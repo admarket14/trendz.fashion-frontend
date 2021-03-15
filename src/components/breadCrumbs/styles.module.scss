@@ -1,0 +1,34 @@
+.breadCrumbs {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-right: auto;
+
+  .breadCrumb {
+    position: relative;
+    border-radius: 5px;
+    padding: 8px 10px;
+
+    svg { width: 15px; }
+    
+    a {
+      text-decoration: none;
+      font-size: 15px;
+      color: #200E32;
+    }
+
+    &:hover {
+      background-color: #f2f2f2;
+    }
+  }
+
+  .separator {
+    align-self: center;
+
+    svg {
+      width: 15px;
+    }
+  }
+}

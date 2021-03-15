@@ -5,11 +5,11 @@
   flex-direction: column;
   flex: 1;
   flex-basis: auto;
-  overflow: hidden;
   min-height: 100%;
   color: $dark-grey;
   border-radius: 10px;
   text-decoration: none;
+  overflow: hidden;
   transition: all 0.6s cubic-bezier(.68,-0.55,.27,1.55);
   box-shadow: 0 0 0 1px rgba(9, 30, 66, 0.08), 0 2px 4px 1px rgba(9, 30, 66, 0.08);
 
@@ -93,11 +93,8 @@
 
   .actions {
     position: absolute;
-    display: flex;
-    flex-direction: row;
-    place-content: center;
+    display: block;
     text-align: center;
-    gap: 10px;
     top: calc(100% - 120px);
     right: 10px;
     transition: all 0.15s ease-in-out;
@@ -105,9 +102,7 @@
     visibility: hidden;
 
     .addToCart, .addToWishlist {
-      display: flex;
-      place-content: center;
-      place-items: center;
+      display: inline-block;
       width: 40px;
       height: 40px;
       background: #fff;
@@ -118,9 +113,10 @@
       box-shadow: 0 0 0 2px #536980;
       svg {
         width: 20px;
+        vertical-align: middle;
       }
       
-      &:hover, :focus {
+      &:hover, &:focus {
         box-shadow: none;
         background: #536980;
       }
@@ -131,7 +127,7 @@
         fill: #536980;
       }
 
-      &:hover {
+      &:hover, &:focus {
         svg {
           fill: #fff;
         }
@@ -139,11 +135,12 @@
     }
 
     .addToWishlist {
+      margin-left: 10px;
       svg {
         stroke: #536980;
       }
 
-      &:hover {
+      &:hover, &:focus {
         svg {
           stroke: #fff;
         }
@@ -154,7 +151,8 @@
   &:hover,
   &:focus {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.11), 0 15px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 35px rgba(0, 0, 0, 0.1), 0 14px 24px rgba(0, 0, 0, 0.1);
+    
     .actions {
       visibility: visible;
       opacity: 1;

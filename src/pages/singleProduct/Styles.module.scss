@@ -43,16 +43,93 @@
   display: flex;
 }
 
-.dropdown {
-  width: 50%;
-}
-
 .addToCartButton {
   margin-top: 30px;
-  width: 70%;
+  margin-right: 20px;
+  width: 90%;
 }
 
 .favoriteButton {
   margin-top: 30px;
   width: 50px;
+}
+
+.quantityInputContainer {
+  border: 1px $medium-grey solid;
+  padding: 5px 10px;
+  border-radius: 100px;
+  // width: 90%;
+  color: $dark-grey;
+  font-size: 18px;
+  background-color: $white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.quantityInput {
+  border: none;
+  width: 50%;
+  outline: none;
+  align-items: center;
+  text-align: center;
+  color: $dark-grey;
+  font-size: 18px;
+}
+
+.quantityButton {
+  background-color: $white;
+  height: 25px;
+  width: 25px;
+  border-radius: 100px;
+  border: 1px solid $light-grey;
+  color: $dark-grey;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.quantityButton:hover {
+  background-color: $light-grey;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addToWishlist {
+  margin-top: 30px;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border: 0;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 0 0 2px #536980;
+  svg {
+    width: 20px;
+  }
+
+  &:hover,
+  :focus {
+    box-shadow: none;
+    color: $white;
+    background: #536980;
+  }
+}
+
+.addToWishlist {
+  svg {
+    stroke: #536980;
+  }
+
+  &:hover {
+    svg {
+      stroke: #fff;
+    }
+  }
 }
