@@ -33,6 +33,11 @@ const PageRoutes = () => (
           path="/checkout"
           component={lazy(() => import('../pages/checkout/Checkout'))}
         />
+        <Route
+          exact
+          path="/order-success"
+          component={lazy(() => import('../pages/thankyouPage/ThankyouPage'))}
+        />
         <Route component={lazy(() => import('../pages/notFoundPage/NotFoundPage'))}></Route>
       </Switch>
     </Suspense>

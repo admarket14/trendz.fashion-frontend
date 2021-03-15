@@ -9,7 +9,6 @@ import PlusIcon from '../../assets/icons/plus/plus';
 import styles from './Product.module.scss';
 
 const Product = ({ product }) => {
-
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
 
@@ -23,7 +22,9 @@ const Product = ({ product }) => {
             alt={product.title}
           />
           <div className={styles.productDetails}>
-            <h2 className={styles.productTitle} title={product.title}>{product.title}</h2>
+            <h2 className={styles.productTitle} title={product.title}>
+              {product.title}
+            </h2>
             <div className={styles.price}>
               <span className={styles.productPrice}>
                 {product.currencySymbol || '$'} {product.price}
@@ -32,7 +33,7 @@ const Product = ({ product }) => {
           </div>
         </Link>
         <div className={styles.actions}>
-          <button 
+          <button
             className={styles.addToCart}
             onClick={() => dispatch(cartAction.addToCart(product))}
           >

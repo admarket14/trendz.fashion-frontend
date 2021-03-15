@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import DeleteIcon from '../../assets/icons/delete/DeleteIcon';
 import styles from './ProductHorizontal.module.scss';
 
-const ProductHorizontal = ({ product, quantity, updateQuantity }) => {
+const ProductHorizontal = ({ product, quantity = 1, updateQuantity }) => {
   const QuantityButton = () => (
     <div className={styles.quantityInputContainer}>
       <button className={styles.quantityButton} onClick={() => updateQuantity(quantity + 1)}>
