@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import Loader from '../../components/loader/Loader';
-import styles from './styles.module.scss';
+import styles from './Styles.module.scss';
 import BreadCrumbs from '../../components/breadCrumbs/breadCrumbs';
 import SortIcon from '../../assets/icons/Sort/sortIcon';
 import FilterIcon from '../../assets/icons/filter/filterIcon';
@@ -16,7 +16,7 @@ const Shopping = ({ match, history }) => {
     {
       name: 'Home',
       route: '/',
-    }
+    },
   ];
 
   switch (category) {
@@ -55,22 +55,24 @@ const Shopping = ({ match, history }) => {
   const [sortDropdown, toggleSortDropdown] = useState(false);
   const [filterMenu, toggleFilterMenu] = useState(false);
   const [products, setProducts] = useState([]);
-  const [sortType, setSortType] = useState("default");
+  const [sortType, setSortType] = useState('default');
 
   const sortBy = (items, sortType) => {
     switch (sortType) {
-      case "new":
-        return setProducts(items.sort((a, b) => {
-          var dateA = new Date(a.createdAt);
-          var dateB = new Date(b.createdAt);
-          return dateA - dateB;
-        }));
-      case "price-hi-to-lo":
+      case 'new':
+        return setProducts(
+          items.sort((a, b) => {
+            var dateA = new Date(a.createdAt);
+            var dateB = new Date(b.createdAt);
+            return dateA - dateB;
+          })
+        );
+      case 'price-hi-to-lo':
         return setProducts(items.sort((a, b) => b.price - a.price));
-      case "price-lo-to-hi":
+      case 'price-lo-to-hi':
         return setProducts(items.sort((a, b) => a.price - b.price));
       // case "disc-hi-to-low":
-      //   return setProducts(items.sort((a, b) => a.discount - b.discount));  
+      //   return setProducts(items.sort((a, b) => a.discount - b.discount));
       default:
         return items;
     }
@@ -110,25 +112,22 @@ const Shopping = ({ match, history }) => {
                   </button>
                   <ul className={styles.sortByDropdown}>
                     <li>
-                      <button 
-                        className={styles.sortBy}
-                        onClick={() => setSortType("new")}
-                      >
+                      <button className={styles.sortBy} onClick={() => setSortType('new')}>
                         New Arrivals
                       </button>
                     </li>
                     <li>
-                      <button 
+                      <button
                         className={styles.sortBy}
-                        onClick={() => setSortType("price-hi-to-lo")}
+                        onClick={() => setSortType('price-hi-to-lo')}
                       >
                         Price - High to low
                       </button>
                     </li>
                     <li>
-                      <button 
+                      <button
                         className={styles.sortBy}
-                        onClick={() => setSortType("price-lo-to-hi")}
+                        onClick={() => setSortType('price-lo-to-hi')}
                       >
                         Price - Low to high
                       </button>
