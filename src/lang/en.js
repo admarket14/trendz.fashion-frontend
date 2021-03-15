@@ -17,7 +17,7 @@ const en = {
   select_size: 'Select Size',
   quantity: 'Quantity',
   free_shipping: 'Free shipping and Free Returns',
-  login_with_google: 'Login with Google',
+  login_with_google: 'Sign in with Google',
   login_with_fb: 'Login with Facebook',
   login_with_your_account: 'Login to your account',
   access_recommendations: 'Get access to your Orders, Wishlist and Recommendations',

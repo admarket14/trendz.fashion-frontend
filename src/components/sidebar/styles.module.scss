@@ -197,7 +197,29 @@
       &.loginButton {
         cursor: pointer;
       }
+
+      &.loggedInUserWrap {
+        color: #333;
+        gap: 10px;
+
+        .profileImage {
+          background-size: contain;
+          background-repeat: no-repeat;
+          width: 25px;
+          height: 25px;
+          min-width: 25px;
+          min-height: 25px;
+          border-radius: 50%;
+        }
+
+        .displayName {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
     }
+
   }
 
   &.sidebarFull {

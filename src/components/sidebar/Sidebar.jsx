@@ -14,7 +14,7 @@ import ArrowLeftIcon from '../../assets/icons/arrows/arrowLeft';
 import { $id } from '../../utils/domUtils';
 import LogInIcon from '../../assets/icons/login/loginIcon';
 
-const Sidebar = ({ openLogin }) => {
+const Sidebar = ({ openLogin, isLoggedIn, currentUser, handleLogout }) => {
   const intl = useIntl();
   const locale = useSelector((state) => state.language.locale);
 
@@ -115,27 +115,46 @@ const Sidebar = ({ openLogin }) => {
         </p>
       </Link>
       <div className={styles.bottomLinks}>
-        <button
-          aria-label="Login"
-          className={`${styles.loginButton} ${styles.bottomLink}`}
-          data-tooltip={intl.formatMessage({ id: 'login' })}
-          data-tooltip-direction="right"
-          lang={locale}
-          onClick={openLogin}
-        >
-          <LogInIcon />
-          <span className={styles.linkText}>
-            <FormattedMessage id="login" />
-          </span>
-        </button>
+        {isLoggedIn ?
+          <Link 
+            to="/user/profile" 
+            className={`${styles.loggedInUserWrap} ${styles.bottomLink}`}
+            aria-label={`${currentUser.name}'s profile`} 
+          >
+            <div className={styles.profileImage} style={{ backgroundImage: `url('${currentUser.photo}')` }}></div>
+            <div className={styles.displayName}>
+              {currentUser.name}
+            </div> 
+          </Link>
+          :
+          <button
+            aria-label="Login"
+            className={`${styles.loginButton} ${styles.bottomLink}`}
+            data-tooltip={intl.formatMessage({ id: 'login' })}
+            data-tooltip-direction="right"
+            lang={locale}
+            onClick={openLogin}
+          >
+            <LogInIcon />
+            <span className={styles.linkText}>
+              <FormattedMessage id="login" />
+            </span>
+          </button>
+        }
 
-        {/* ONLY IF USER LOGGER IN */}
-        {/* <button aria-label="Logout" className={`${styles.logout} ${styles.bottomLink}`}>
-          <LogoutIcon />
-          <span className={styles.linkText}>
-            Logout
-          </span>
-        </button> */}
+        {isLoggedIn ? 
+          <button 
+            aria-label="Logout" 
+            className={`${styles.logout} ${styles.bottomLink}`}
+            onClick={handleLogout}
+          >
+            <LogoutIcon />
+            <span className={styles.linkText}>
+              Logout
+            </span>
+          </button>
+          : null 
+        }
         <Link
           to="/help"
           data-test-id="helpPage"

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import cartAction from '../../redux/actions/cartAction';
 
 import HeartIcon from '../../assets/icons/heart/heart';
 import PlusIcon from '../../assets/icons/plus/plus';
@@ -7,6 +9,10 @@ import PlusIcon from '../../assets/icons/plus/plus';
 import styles from './styles.module.scss';
 
 const Product = ({ product }) => {
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 col-12 my-3 ">
       <div className={styles.product} key={product.id} tabIndex="0">
@@ -26,7 +32,10 @@ const Product = ({ product }) => {
           </div>
         </Link>
         <div className={styles.actions}>
-          <button className={styles.addToCart}>
+          <button 
+            className={styles.addToCart}
+            onClick={() => dispatch(cartAction.addToCart(product))}
+          >
             <PlusIcon />
           </button>
           {/* Only if user logged in */}
