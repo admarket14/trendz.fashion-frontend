@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
@@ -17,7 +17,43 @@ import VisaPurple from '../../assets/images/paymentCards/VisaPurple.svg';
 import AllProduct from '../../fakeData/fakeApiAllProducts';
 
 const Checkout = () => {
-  const products = [AllProduct[0], AllProduct[10]];
+  // const products = [AllProduct[0], AllProduct[10]];
+
+  const discount = 99;
+  const tax = 12.5;
+  const deliveryFee = 40;
+
+  const [update, setUpdate] = useState(false);
+  const [subTotal, setSubtotal] = useState(0);
+  const [taxAmount, setTaxAmount] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [products, setProduct] = useState([]);
+
+  useEffect(() => {
+    setProduct([
+      { ...AllProduct[0], quantity: 1 },
+      { ...AllProduct[5], quantity: 1 },
+    ]);
+  }, [setProduct]);
+
+  useEffect(() => {
+    let tempSubTotal = 0;
+    products.forEach((product) => (tempSubTotal = tempSubTotal + product.price * product.quantity));
+    setSubtotal(parseFloat(tempSubTotal.toFixed(2)));
+
+    let tempTaxAmount = parseFloat(((tempSubTotal * tax) / 100).toFixed(2));
+    setTaxAmount(tempTaxAmount);
+
+    let tempTotal = parseFloat((tempSubTotal + tempTaxAmount + deliveryFee - discount).toFixed(2));
+    setTotal(tempTotal);
+  }, [products, update]);
+
+  const updateQuantity = (index, quantity) => {
+    const tempProducts = products;
+    tempProducts[index].quantity = quantity;
+    setProduct(tempProducts);
+    setUpdate(!update);
+  };
 
   const PaymentCard = ({ image }) => (
     <div className="col-lg-3 col-md-3 col-sm-4 col-12 mb-3">
@@ -81,23 +117,31 @@ const Checkout = () => {
             <Heading>
               <FormattedMessage id="order_summary" />
             </Heading>
-            {products.map((product) => (
-              <div className={styles.productContainer}>
-                <ProductHorizontal product={product} />
+            {products.map((product, index) => (
+              <div className={styles.productContainer} key={product.id}>
+                <ProductHorizontal
+                  index={index}
+                  product={product}
+                  quantity={product.quantity}
+                  updateQuantity={(quantity) => updateQuantity(index, quantity)}
+                />
               </div>
             ))}
             <br />
-            <PriceContainer title={<FormattedMessage id="subTotal" />} price="₹ 19,893.00" />
-            <PriceContainer title={<FormattedMessage id="discount" />} price="₹ 1,499.00" />
-            <PriceContainer title={<FormattedMessage id="tax" />} price="₹ 3,125.00" />
-            <PriceContainer title={<FormattedMessage id="delivery_fee" />} price="₹ 0" />
+            <PriceContainer title={<FormattedMessage id="subTotal" />} price={`₹ ${subTotal}`} />
+            <PriceContainer title={<FormattedMessage id="discount" />} price={`₹ ${discount}`} />
+            <PriceContainer title={<FormattedMessage id="tax" />} price={`₹ ${taxAmount}`} />
+            <PriceContainer
+              title={<FormattedMessage id="delivery_fee" />}
+              price={`₹ ${deliveryFee}`}
+            />
             <div className="row px-lg-5 px-md-4 px-sm-2 px-2 ">
               <hr className="my-4" />
               <div className="col-6">
                 <span className={styles.priceTitle}>{<FormattedMessage id="total" />}</span>
               </div>
               <div className="col-6" align="right">
-                <span className={styles.priceTotal}>₹ 23,893.00</span>
+                <span className={styles.priceTotal}>₹ {total}</span>
               </div>
               <hr className="my-4" />
               <br />

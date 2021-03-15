@@ -4,12 +4,10 @@ import { FormattedMessage } from 'react-intl';
 import DeleteIcon from '../../assets/icons/delete/DeleteIcon';
 import styles from './ProductHorizontal.module.scss';
 
-const ProductHorizontal = ({ product }) => {
-  const [quantity, setQuantity] = useState(1);
-
+const ProductHorizontal = ({ product, quantity, updateQuantity }) => {
   const QuantityButton = () => (
     <div className={styles.quantityInputContainer}>
-      <button className={styles.quantityButton} onClick={() => setQuantity(quantity + 1)}>
+      <button className={styles.quantityButton} onClick={() => updateQuantity(quantity + 1)}>
         +
       </button>
       <input
@@ -21,7 +19,7 @@ const ProductHorizontal = ({ product }) => {
       />
       <button
         className={styles.quantityButton}
-        onClick={() => setQuantity(quantity - 1)}
+        onClick={() => updateQuantity(quantity - 1)}
         disabled={quantity === 1}
       >
         -
@@ -37,7 +35,7 @@ const ProductHorizontal = ({ product }) => {
         <h2 className={styles.subTitle}>{product.category}</h2>
         <div className={styles.flexRow}>
           <QuantityButton />
-          <h2 className={styles.price}>₹ {product.price * quantity}</h2>
+          <h2 className={styles.price}>₹ {(product.price * quantity).toFixed(2)}</h2>
         </div>
         <div tabIndex="0" className={styles.removeCartButton}>
           <div className={styles.flexRow}>

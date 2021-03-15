@@ -142,14 +142,22 @@ const Navigation = () => {
           </ul>
         </div>
 
-        <button aria-label="Cart" className={`${styles.navItem} ${styles.cartButton}`}>
+        <button
+          aria-label="Cart"
+          onClick={() => history.push('/checkout')}
+          className={`${styles.navItem} ${styles.cartButton}`}
+        >
           <CartIcon />
         </button>
 
         {/* ONLY IF USER LOGGER IN */}
-        {/* <button aria-label="Sign In" className={`${styles.navItem} ${styles.profileButton}`}>
+        <button
+          aria-label="Sign In"
+          onClick={() => history.push('/setting')}
+          className={`${styles.navItem} ${styles.profileButton}`}
+        >
           <ProfileIcon />
-        </button> */}
+        </button>
       </div>
     </header>
   );
