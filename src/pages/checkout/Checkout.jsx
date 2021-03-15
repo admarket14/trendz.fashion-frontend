@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import ProductHorizontal from '../../components/product/ProductHorizontal';
@@ -14,14 +16,17 @@ import AddCard from '../../assets/images/paymentCards/Addcard.svg';
 import VisaBlack from '../../assets/images/paymentCards/VisaBlack.svg';
 import VisaPurple from '../../assets/images/paymentCards/VisaPurple.svg';
 
-import AllProduct from '../../fakeData/fakeApiAllProducts';
+import allProducts from '../../fakeData/fakeApiAllProducts';
 
-const Checkout = () => {
-  // const products = [AllProduct[0], AllProduct[10]];
+import cartAction from '../../redux/actions/cartAction.js';
 
-  const discount = 99;
+const Checkout = ({ history }) => {
+  const discount = 5;
   const tax = 12.5;
-  const deliveryFee = 40;
+  const deliveryFee = 10;
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
   const [update, setUpdate] = useState(false);
   const [subTotal, setSubtotal] = useState(0);
@@ -29,12 +34,16 @@ const Checkout = () => {
   const [total, setTotal] = useState(0);
   const [products, setProduct] = useState([]);
 
+  const getProduct = (id) =>
+    allProducts.filter((product) => parseInt(product.id) === parseInt(id))[0];
+
   useEffect(() => {
-    setProduct([
-      { ...AllProduct[0], quantity: 1 },
-      { ...AllProduct[5], quantity: 1 },
-    ]);
-  }, [setProduct]);
+    const tempCartItems = [];
+    for (let key in cart.items) tempCartItems.push({ ...getProduct(key), quantity: 1 });
+
+    setProduct(tempCartItems);
+    setUpdate(!update);
+  }, []);
 
   useEffect(() => {
     let tempSubTotal = 0;
@@ -53,6 +62,11 @@ const Checkout = () => {
     tempProducts[index].quantity = quantity;
     setProduct(tempProducts);
     setUpdate(!update);
+  };
+
+  const handlePurchase = () => {
+    dispatch(cartAction.clearCart());
+    history.push('/order-success');
   };
 
   const PaymentCard = ({ image }) => (
@@ -117,36 +131,53 @@ const Checkout = () => {
             <Heading>
               <FormattedMessage id="order_summary" />
             </Heading>
-            {products.map((product, index) => (
-              <div className={styles.productContainer} key={product.id}>
-                <ProductHorizontal
-                  index={index}
-                  product={product}
-                  quantity={product.quantity}
-                  updateQuantity={(quantity) => updateQuantity(index, quantity)}
+            {products.length === 0 ? (
+              <h2 align="center" className="mt-4">
+                Add products in cart
+              </h2>
+            ) : (
+              <h3>
+                {products.map((product, index) => (
+                  <div className={styles.productContainer} key={product.id}>
+                    <ProductHorizontal
+                      index={index}
+                      product={product}
+                      quantity={product.quantity}
+                      updateQuantity={(quantity) => updateQuantity(index, quantity)}
+                    />
+                  </div>
+                ))}
+                <br />
+                <PriceContainer
+                  title={<FormattedMessage id="subTotal" />}
+                  price={`₹ ${subTotal}`}
                 />
-              </div>
-            ))}
-            <br />
-            <PriceContainer title={<FormattedMessage id="subTotal" />} price={`₹ ${subTotal}`} />
-            <PriceContainer title={<FormattedMessage id="discount" />} price={`₹ ${discount}`} />
-            <PriceContainer title={<FormattedMessage id="tax" />} price={`₹ ${taxAmount}`} />
-            <PriceContainer
-              title={<FormattedMessage id="delivery_fee" />}
-              price={`₹ ${deliveryFee}`}
-            />
-            <div className="row px-lg-5 px-md-4 px-sm-2 px-2 ">
-              <hr className="my-4" />
-              <div className="col-6">
-                <span className={styles.priceTitle}>{<FormattedMessage id="total" />}</span>
-              </div>
-              <div className="col-6" align="right">
-                <span className={styles.priceTotal}>₹ {total}</span>
-              </div>
-              <hr className="my-4" />
-              <br />
-              <PrimaryButton title={<FormattedMessage id="place_order" />} />
-            </div>
+                <PriceContainer
+                  title={<FormattedMessage id="discount" />}
+                  price={`₹ ${discount}`}
+                />
+                <PriceContainer title={<FormattedMessage id="tax" />} price={`₹ ${taxAmount}`} />
+                <PriceContainer
+                  title={<FormattedMessage id="delivery_fee" />}
+                  price={`₹ ${deliveryFee}`}
+                />
+                <div className="row px-lg-5 px-md-4 px-sm-2 px-2 ">
+                  <hr className="my-4" />
+                  <div className="col-6">
+                    <span className={styles.priceTitle}>{<FormattedMessage id="total" />}</span>
+                  </div>
+                  <div className="col-6" align="right">
+                    <span className={styles.priceTotal}>₹ {total}</span>
+                  </div>
+                  <hr className="my-4" />
+                  <br />
+                  <PrimaryButton
+                    title={<FormattedMessage id="place_order" />}
+                    onClick={handlePurchase}
+                  />
+                </div>
+              </h3>
+            )}
           </div>
         </div>
       </section>

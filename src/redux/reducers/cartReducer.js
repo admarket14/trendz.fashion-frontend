@@ -3,19 +3,17 @@ import {
   REMOVE_PRODUCT_FROM_CART,
   INCREMENT_COUNT,
   DECREMENT_COUNT,
-  TOGGLE_CART_SECTION
+  TOGGLE_CART_SECTION,
+  CLEAR_CART,
 } from '../type';
 
 const initialState = {
   items: {},
-  cartSectionOpened: false
+  cartSectionOpened: false,
 };
 
 export default function cartReducer(state = initialState, action) {
-  const {
-    type,
-    payload
-  } = action;
+  const { type, payload } = action;
 
   switch (type) {
     case ADD_PRODUCT_TO_CART:
@@ -24,13 +22,13 @@ export default function cartReducer(state = initialState, action) {
         items[payload].count += 1;
       } else {
         items[payload] = {
-          count: 1
+          count: 1,
         };
       }
 
       return {
         ...state,
-        items: items
+        items: items,
       };
     // case REMOVE_PRODUCT_FROM_CART:
     //   return {
@@ -50,7 +48,12 @@ export default function cartReducer(state = initialState, action) {
     case TOGGLE_CART_SECTION:
       return {
         ...state,
-        cartSectionOpened: payload
+        cartSectionOpened: payload,
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        items: {},
       };
 
     default:

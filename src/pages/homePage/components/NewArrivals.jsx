@@ -3,16 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../../components/loader/Loader';
 import Product from '../../../components/product/Product';
+import allProducts from '../../../fakeData/fakeApiAllProducts';
 import productAction from '../../../redux/actions/productAction';
 import styles from './NewArrivals.module.scss';
 
 const NewArrivals = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.products);
+  const products = allProducts;
 
-  useEffect(() => {
-    dispatch(productAction.getProducts());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(productAction.getProducts());
+  // }, []);
 
   if (products) {
     return (
