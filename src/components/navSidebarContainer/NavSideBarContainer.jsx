@@ -11,6 +11,7 @@ import LogIn from '../login/login';
 import styles from './styles.module.scss';
 import { Redirect } from 'react-router';
 import CartSection from '../cart/cart';
+import HeartIcon from '../../assets/icons/heart/heart';
 
 
 const NavSideBarContainer = ({ children }) => {
@@ -63,7 +64,20 @@ const NavSideBarContainer = ({ children }) => {
     return (
       <>
         <Sidebar openLogin={openLogin} isLoggedIn={isLoggedIn} currentUser={currentUser} handleLogout={() => logOut(beforeLogout, afterLogout)} />
-        <div className={styles.appContent}>{children}</div>
+        <div className={styles.appContent}>
+          {children}
+        </div>
+        <div className={styles.footer}>
+          <div className={styles.left}>
+            Made with ❤️ by <a href="https://www.linkedin.com/in/himateja/" target="_blank" alt="Himateja Merlapaka">Himateja</a> & <a href="https://www.linkedin.com/in/deepakbhadoriya/"target="_blank"  alt="Deepak Bhadoriya">Deepak</a>
+          </div>
+          <div className="center">
+            Powered by <a href="https://reactjs.org/" target="_blank" alt="React">React JS</a> and <a href="https://www.netlify.com/" target="_blank" alt="Netlify">Netlify</a>
+          </div>
+          <div className={styles.right}>
+            You can find source of this site at <a href="https://github.com/pesto-students/little-tags-deepakbhadoriya-HimatejaMerlapaka-frontend" alt="Trendz.fashion">Github</a>
+          </div>
+        </div>
         <LogIn onCloseLogin={closeLogin} isVisible={loginVisible} locale={locale} afterLogin={(user) => setCurrentUser(currentLoggedInUser())} />
         <CartSection />
       </>
