@@ -1,0 +1,101 @@
+@import '../../styles/variables';
+
+.productContainer {
+  display: flex;
+  flex-direction: row;
+}
+.productImage {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border-radius: 5px;
+  width: 130px;
+  height: 130px;
+}
+.productDetailContainer {
+  padding-left: 10px;
+  width: fit-content;
+}
+.title {
+  font-size: 17px;
+  line-height: 17px;
+  height: 35px;
+  margin-bottom: 7px;
+  overflow: hidden;
+}
+.subTitle {
+  font-size: 13px;
+  color: $medium-grey;
+  text-transform: capitalize;
+}
+.price {
+  color: $success;
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 20px;
+  align-self: center;
+}
+.removeCart {
+  color: $danger;
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 5px;
+  align-self: center;
+}
+.quantityInputContainer {
+  border: 1px $medium-grey solid;
+  padding: 2px 5px;
+  border-radius: 100px;
+  width: 80px;
+  color: $dark-grey;
+  font-size: 15px;
+  background-color: $white;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.quantityInput {
+  border: none;
+  width: 50%;
+  outline: none;
+  align-items: center;
+  text-align: center;
+  color: $dark-grey;
+  font-size: 18px;
+}
+
+.quantityButton {
+  background-color: $white;
+  height: 20px;
+  width: 20px;
+  border-radius: 100px;
+  border: 1px solid $light-grey;
+  color: $dark-grey;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.quantityButton:hover {
+  background-color: $light-grey;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  height: fit-content;
+  width: fit-content;
+}
+
+.removeCartButton {
+  display: block;
+  height: fit-content;
+  width: fit-content;
+  padding: 1px;
+}

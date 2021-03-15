@@ -293,17 +293,54 @@
         }
       }
     }
+
+    &.signInProgress {
+      * {
+        filter: blur(2px) !important;
+      }
+
+      &::before {
+        content: "Please wait while Signing you in...";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.72);
+        z-index: 1;
+        font-size: 15px;
+        color: #000;
+        display: flex;
+        place-content: center;
+        place-items: center;
+      }
+
+      &::after {
+        position: absolute;
+        content: "";
+        width: 50px;
+        height: 50px;
+        background: transparent;
+        position: absolute;
+        top: calc(50% - 50px);
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 5px #efefef solid;
+        border-top: 5px solid #6d99ff;
+        border-radius: 100%;
+        z-index: 1;
+        animation: spin 5s linear infinite;
+      }
+    }
   }
 
   &.open {
     visibility: visible;
     background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
     
     .loginContainer {
       visibility: visible;
       opacity: 1;
-      filter: blur(0);
       transform: scale(1);
       transition-delay: 0.3s;
     }
@@ -312,14 +349,22 @@
   &.close {
     transition-delay: 0.3s;
     background: none;
-    backdrop-filter: blur(0);
     visibility: hidden;
     
     .loginContainer {
       transform: scale(0.5);
-      filter: blur(15px);
       opacity: 0;
       visibility: hidden;
     }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
