@@ -91,13 +91,13 @@ const Shopping = ({ match, history }) => {
             <div className={styles.row}>
               <BreadCrumbs breadCrumbsList={breadCrumbs} />
               <div className={styles.filterSection}>
-                <button className={styles.filterToggler} onClick={() => toggleFilterMenu(true)}>
+                {/* <button className={styles.filterToggler} onClick={() => toggleFilterMenu(true)}>
                   <FilterIcon />
                   Filter
                   <span className={styles.filterCountSection}>
                     <span className={styles.filterCount}>5</span>
                   </span>
-                </button>
+                </button> */}
                 <div
                   className={`${styles.sortSection} ${sortDropdown ? styles.show : styles.hide}`}
                 >
@@ -161,18 +161,6 @@ const Shopping = ({ match, history }) => {
           </div>
         </div>
       </NavSideBarContainer>
-      
-      {/* Use this for cart section */}
-      {/* <div
-        className={`${styles.offCanvasFilters} ${
-          filterMenu ? styles.showFilters : styles.hideFilters
-        }`}
-      >
-        <button className={styles.closeFiltersMenu} onClick={() => toggleFilterMenu(false)}>
-          <CloseIcon />
-        </button>
-        Blah blah blah
-      </div> */}
     </>
   );
 };

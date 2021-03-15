@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import NavSideBarContainer from '../../components/navSidebarContainer/NavSideBarContainer';
 import Offers from './components/Offers';
 import NewArrivals from './components/NewArrivals';
 
 const Home = () => {
+
+  useEffect(() => {
+
+  }, []);
+
   return (
     <NavSideBarContainer>
       <Offers />

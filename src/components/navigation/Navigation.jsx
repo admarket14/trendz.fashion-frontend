@@ -11,6 +11,7 @@ import SearchIcon from '../../assets/icons/search-icon/searchIcon';
 import CloseIcon from '../../assets/icons/close/closeIcon';
 
 import languageAction from '../../redux/actions/languageAction';
+import cartAction from '../../redux/actions/cartAction';
 
 import UKFlag from '../../assets/images/countryFlags/UKFlag.png';
 import IndiaFlag from '../../assets/images/countryFlags/IndianFlag.png';
@@ -35,10 +36,12 @@ const Navigation = () => {
 
   const dispatch = useDispatch();
   const locale = useSelector((state) => state.language.locale);
+  const cart = useSelector((state) => state.cart);
 
   const [languageDropdown, toggleLanguageDropdown] = useState(false);
   const [showSearchBar, toggleSearchBar] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [cartCount, setCartCount] = useState(0);
 
   const updateLocale = (language) => {
     dispatch(languageAction.changeLanguage(language));
@@ -54,6 +57,10 @@ const Navigation = () => {
       setSearchQuery('');
     }
   }, [pathname]);
+
+  useEffect(() => {
+    setCartCount(Object.values(cart.items).reduce((total, item) => (item.count || 0) + total, 0));
+  }, [cart]);
 
   const handleInput = (e) => {
     const query = e.target.value;
@@ -78,6 +85,7 @@ const Navigation = () => {
             id="search"
             type="text"
             placeholder={intl.formatMessage({ id: 'search' })}
+            autoComplete="off"
             className={styles.input}
             lang={locale}
             value={searchQuery}
@@ -144,8 +152,11 @@ const Navigation = () => {
 
         <button
           aria-label="Cart"
-          onClick={() => history.push('/checkout')}
-          className={`${styles.navItem} ${styles.cartButton}`}
+          className={`${styles.navItem} ${styles.cartButton} ${
+            cartCount > 0 ? styles.cartAvailable : ''
+          }`}
+          data-count={cartCount}
+          onClick={() => dispatch(cartAction.openCartSection(!cart.cartSectionOpened))}
         >
           <CartIcon />
         </button>
