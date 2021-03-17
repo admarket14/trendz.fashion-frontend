@@ -19,8 +19,8 @@
 
 ## Install
 
-    $ git clone https://github.com/pesto-students/little-tags-deepakbhadoriya-HimatejaMerlapaka-frontend.git
-    $ cd little-tags-deepakbhadoriya-HimatejaMerlapaka-frontend
+    $ git clone https://github.com/pesto-students/trendz.fashion-backend.git
+    $ cd trendz.fashion-backend
     $ npm install
 
 ## Start & watch
