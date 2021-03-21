@@ -22,6 +22,66 @@
     padding: 0 5px;
   }
 
+  .sidebarToggler {
+    display: flex;
+    background: $white;
+    border: 0;
+    margin-right: 5px;
+    cursor: pointer;
+    width: 60px;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: $medium-blue;
+      background-image: linear-gradient(315deg, $medium-blue 0%, $light-blue 74%);
+      z-index: -1;
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+
+      @media only screen and (max-width: 900px) {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    svg {
+      width: 25px;
+      height: 25px;
+      margin: 0 10px;
+      z-index: 1;
+
+      @media only screen and (max-width: 900px) {
+        width: 20px;
+        height: 20px;
+        margin: 0 8px;
+      }
+
+      path {
+        fill: #292c49;
+        transition: all ease 0.3s;
+      }
+    }
+    
+    &:hover,
+    &:focus {
+      svg {
+        path:first-child {
+          transform: translateY(-3px);
+        }
+  
+        path:last-child {
+          transform: translateY(3px);
+        }
+      }
+    }
+  }
+
   .pageBranding {
     display: inline-flex;
     align-items: center;

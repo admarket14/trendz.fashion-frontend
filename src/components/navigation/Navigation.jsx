@@ -12,10 +12,12 @@ import CloseIcon from '../../assets/icons/close/closeIcon';
 
 import languageAction from '../../redux/actions/languageAction';
 import cartAction from '../../redux/actions/cartAction';
+import homeAction from '../../redux/actions/homeActions';
 
 import UKFlag from '../../assets/images/countryFlags/UKFlag.webp';
 import IndiaFlag from '../../assets/images/countryFlags/IndianFlag.webp';
 import spainFlag from '../../assets/images/countryFlags/spainFlag.webp';
+import HamburgerIcon from '../../assets/icons/hamburger/hambugerIcon';
 
 const Navigation = () => {
   const history = useHistory();
@@ -37,6 +39,7 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const locale = useSelector((state) => state.language.locale);
   const cart = useSelector((state) => state.cart);
+  const homeStates = useSelector((state) => state.homeStates);
 
   const [languageDropdown, toggleLanguageDropdown] = useState(false);
   const [showSearchBar, toggleSearchBar] = useState(false);
@@ -74,6 +77,12 @@ const Navigation = () => {
 
   return (
     <header className={styles.header}>
+      <button 
+        className={styles.sidebarToggler}
+        onClick={() => dispatch(homeAction.toggleSidebar(!homeStates.sidebarStatus))}
+      >
+        <HamburgerIcon/>
+      </button>
       <Link to="/" className={styles.pageBranding}>
         <Logo container="header" />
         <span className={styles.logoTitle}>TrendZ</span>
@@ -123,7 +132,7 @@ const Navigation = () => {
             className={`${styles.navItem} ${styles.languageSwitcherToggle}`}
             onClick={() => toggleLanguageDropdown(!languageDropdown)}
           >
-            <img src={flags[locale]} />
+            <img alt={flagLanguage[locale]} src={flags[locale]} />
             <span lang={locale} className={styles.currentLocale}>
               {flagLanguage[locale]}
             </span>

@@ -17,6 +17,7 @@ import LogInIcon from '../../assets/icons/login/loginIcon';
 const Sidebar = ({ openLogin, isLoggedIn, currentUser, handleLogout }) => {
   const intl = useIntl();
   const locale = useSelector((state) => state.language.locale);
+  const homeStates = useSelector((state) => state.homeStates);
 
   const [sidebarVisible, toggleSidebar] = useState(() => window.innerWidth >= 900);
 
@@ -25,26 +26,15 @@ const Sidebar = ({ openLogin, isLoggedIn, currentUser, handleLogout }) => {
     if (rootDiv) {
       rootDiv.classList.remove('sidebarOpen');
       rootDiv.classList.remove('sidebarMinimized');
-      rootDiv.classList.add(sidebarVisible ? 'sidebarOpen' : 'sidebarMinimized');
+      rootDiv.classList.add(homeStates.sidebarStatus ? 'sidebarOpen' : 'sidebarMinimized');
     }
-  }, [sidebarVisible]);
-
-  const updateSideBarVisibility = (event) => {
-    toggleSidebar(!sidebarVisible);
-  };
+  }, [homeStates]);
 
   return (
     <div
-      className={`${styles.sidebar} ${sidebarVisible ? styles.sidebarFull : styles.sidebarMinimized
+      className={`${styles.sidebar} ${homeStates.sidebarStatus ? styles.sidebarFull : styles.sidebarMinimized
         }`}
     >
-      <button
-        aria-label="Sidebar toggle"
-        className={`${styles.sidebarToggler} ${sidebarVisible ? '' : styles.sidebarHidden}`}
-        onClick={updateSideBarVisibility}
-      >
-        <ArrowLeftIcon />
-      </button>
       <div className={styles.navLinks}>
         <Link
           to="/shop/men"
