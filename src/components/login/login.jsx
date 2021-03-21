@@ -1,13 +1,18 @@
-import React, { useState, useEffect , useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { useDispatch, useSelector } from 'react-redux';
+
+import authAction from '../../redux/actions/authAction';
 import styles from './styles.module.scss';
 import googleLogo from '../../assets/images/sso/google.svg';
 import facebookLogo from '../../assets/images/sso/facebook.svg';
 import ArrowRightIcon from '../../assets/icons/arrows/arrowRight';
-import { signInWithGoogle } from "../../services/firebase";
-import { FormattedMessage, useIntl } from 'react-intl';
+import { signInWithGoogle } from '../../services/firebase';
 
 const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
   const intl = useIntl();
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
   const usernameInput = useRef(null);
   const emailInput = useRef(null);
@@ -33,12 +38,37 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
     (usernameInput.current || loginInput.current).focus();
   }, [isRegistrationScreen]);
 
+  // Login Logic
+  const [loginUser, setLoginUser] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleLoginDetailChange = (e) =>
+    setLoginUser({ ...loginUser, [e.target.name]: e.target.value });
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    dispatch(authAction.login(loginUser));
+    setIsLoading(true);
+  };
+
+  useEffect(() => {
+    auth.isAuthenticated && closeLogin() && setIsLoading(true);
+  }, [auth.isAuthenticated]);
+
+  // Login Logic ends
+
   return (
     <div className={`${styles.loginModal} ${isVisible ? styles.open : styles.close}`}>
-      <div className={`${styles.loginContainer} ${isLoading ? styles.signInProgress : ""}`}>
+      <div className={`${styles.loginContainer} ${isLoading ? styles.signInProgress : ''}`}>
         <div className={styles.header}>
           <div className={styles.title} lang={locale}>
-            {isRegistrationScreen ? <FormattedMessage id="create_account" /> : <FormattedMessage id="login" /> }
+            {isRegistrationScreen ? (
+              <FormattedMessage id="create_account" />
+            ) : (
+              <FormattedMessage id="login" />
+            )}
           </div>
           <button data-test-id="closeModal" className={styles.closeLogin} onClick={closeLogin}>
             &times;
@@ -46,13 +76,17 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
         </div>
         <div className={styles.content}>
           <h2 className={styles.heading} lang={locale}>
-            {isRegistrationScreen ? <FormattedMessage id="create_an_account" /> : <FormattedMessage id="login_with_your_account" /> }
+            {isRegistrationScreen ? (
+              <FormattedMessage id="create_an_account" />
+            ) : (
+              <FormattedMessage id="login_with_your_account" />
+            )}
           </h2>
           <h2 className={styles.subHeading} lang={locale}>
             <FormattedMessage id="access_recommendations" />
           </h2>
           <div className={styles.ssoContainer}>
-            <button 
+            <button
               className={styles.LoginWithGoogleButton}
               onClick={() => signInWithGoogle(beforeSignIn, afterSignIn)}
             >
@@ -70,11 +104,15 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
           </div>
           <div className={styles.legend} lang={locale}>
             <span lang={locale}>
-              {isRegistrationScreen ? <FormattedMessage id="alternate_register" /> : <FormattedMessage id="alternate_login" /> }
+              {isRegistrationScreen ? (
+                <FormattedMessage id="alternate_register" />
+              ) : (
+                <FormattedMessage id="alternate_login" />
+              )}
             </span>
           </div>
           <form className={styles.form}>
-            {isRegistrationScreen ? 
+            {isRegistrationScreen ? (
               <div className={styles.fieldSet}>
                 <label htmlFor="registerUsername" lang={locale}>
                   <FormattedMessage id="username" />
@@ -88,8 +126,8 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                   />
                 </div>
               </div>
-            : null }
-            {isRegistrationScreen ? 
+            ) : null}
+            {isRegistrationScreen ? (
               <div className={styles.fieldSet}>
                 <label htmlFor="registerEmail" lang={locale}>
                   <FormattedMessage id="email" />
@@ -103,8 +141,8 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                   />
                 </div>
               </div>
-            : null }
-            {isRegistrationScreen ? 
+            ) : null}
+            {isRegistrationScreen ? (
               <div className={styles.fieldSet}>
                 <label htmlFor="registerMobileNumber" lang={locale}>
                   <FormattedMessage id="phone" />
@@ -118,8 +156,8 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                   />
                 </div>
               </div>
-            : null }
-            {isRegistrationScreen ? null : 
+            ) : null}
+            {isRegistrationScreen ? null : (
               <div className={styles.fieldSet}>
                 <label htmlFor="loginUsername" lang={locale}>
                   <FormattedMessage id="email_or_username" />
@@ -130,12 +168,14 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                     id="loginUsername"
                     data-test-id="loginEmail"
                     type="text"
+                    name="email"
+                    onChange={handleLoginDetailChange}
                     autoFocus
                     placeholder={intl.formatMessage({ id: 'email_or_username_prompt' })}
                   />
                 </div>
               </div>
-            }
+            )}
             <div className={styles.fieldSet}>
               <label htmlFor="formPassword" lang={locale}>
                 <FormattedMessage id="password" />
@@ -145,6 +185,8 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                   ref={passwordInput}
                   data-test-id="formPassword"
                   id="formPassword"
+                  name="password"
+                  onChange={handleLoginDetailChange}
                   type="password"
                   placeholder={intl.formatMessage({ id: 'password_prompt' })}
                 />
@@ -152,24 +194,28 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
             </div>
             <div className={`${styles.fieldSet} ${styles.loginActions}`} lang={locale}>
               <label className={styles.rememberMe}>
-              {isRegistrationScreen ? null : 
-                <>
-                  <input type="checkbox" ref={rememberCheckboxInput} />
-                  <FormattedMessage id="remember_me" />
-                </>
-              }
+                {isRegistrationScreen ? null : (
+                  <>
+                    <input type="checkbox" ref={rememberCheckboxInput} />
+                    <FormattedMessage id="remember_me" />
+                  </>
+                )}
               </label>
-              {isRegistrationScreen ? 
+              {isRegistrationScreen ? (
                 <button className={styles.registerButton} data-test-id="registerButton">
                   <FormattedMessage id="register" />
                   <ArrowRightIcon />
                 </button>
-               : 
-                <button className={styles.logInButton} data-test-id="loginButton">
+              ) : (
+                <button
+                  className={styles.logInButton}
+                  data-test-id="loginButton"
+                  onClick={handleLoginSubmit}
+                >
                   <FormattedMessage id="login" />
                   <ArrowRightIcon />
                 </button>
-              }
+              )}
             </div>
           </form>
         </div>
@@ -177,27 +223,27 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
           <a href="/forgot-password">
             <FormattedMessage id="forgot_password" />
           </a>
-          {isRegistrationScreen ? 
-            <a 
+          {isRegistrationScreen ? (
+            <a
               href="/login"
               onClick={(event) => {
                 event.preventDefault();
                 showRegistrationScreen(false);
-              }} 
+              }}
             >
               <FormattedMessage id="login" />
             </a>
-          : 
-            <a 
+          ) : (
+            <a
               href="/create-account"
               onClick={(event) => {
                 event.preventDefault();
                 showRegistrationScreen(true);
-              }} 
+              }}
             >
               <FormattedMessage id="create_account" />
             </a>
-          }
+          )}
         </div>
       </div>
     </div>
