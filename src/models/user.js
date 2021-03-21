@@ -1,6 +1,8 @@
+import axios from "axios";
 export default class User {
   constructor() {
-    this.baseURL = process.env.NODE_ENV == "development" ? "http://localhost:5000/" : "https://api-trendz-fashion.herokuapp.com/";
+    this.baseURL = process.env.NODE_ENV == "development" ? "http://localhost:5000" : "https://api-trendz-fashion.herokuapp.com";
+    this.registerURL = `${this.baseURL}/register`;
   }
 
   async logIn(params) {
@@ -8,6 +10,17 @@ export default class User {
   }
 
   async register(params) {
+    const axiosRequest = axios.post(this.registerURL, params);
+    return axiosRequest.then(function (response) {
+      const {
+        token
+      } = response.data;
 
+      if (token != undefined) {
+        localStorage.setItem("user-token", token);
+      }
+    }).catch(function (error) {
+      console.log(error);
+    });
   }
 }

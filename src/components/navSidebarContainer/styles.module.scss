@@ -40,4 +40,8 @@
 :global(.sidebarMinimized) :local(.footer) {
   left: 75px;
   width: calc(100% - 75px);
+
+  @media only screen and (max-width: 900px) {
+    display: none;
+  }
 }
