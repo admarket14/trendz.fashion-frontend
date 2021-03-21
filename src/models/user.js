@@ -17,7 +17,7 @@ export default class User {
       } = response.data;
 
       if (token != undefined) {
-        localStorage.setItem("user-token", token);
+        localStorage.setItem("jwtToken", token);
       }
     }).catch(function (error) {
       console.log(error);

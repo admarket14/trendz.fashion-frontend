@@ -57,7 +57,11 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
       setIsLoading(true);
       user.register(formData).then(() => {
         setIsLoading(false);
+        
       });
+    } else {
+      dispatch(authAction.login(loginUser));
+      setIsLoading(true);
     }
   };
 
@@ -73,12 +77,6 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
 
   const handleLoginDetailChange = (e) =>
     setLoginUser({ ...loginUser, [e.target.name]: e.target.value });
-
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    dispatch(authAction.login(loginUser));
-    setIsLoading(true);
-  };
 
   useEffect(() => {
     auth.isAuthenticated && closeLogin() && setIsLoading(true);
@@ -260,7 +258,6 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                 <button 
                   type="submit"
                   className={styles.logInButton} 
-                  onClick={handleLoginSubmit}
                   data-test-id="loginButton"
                 >
                   <FormattedMessage id="login" />

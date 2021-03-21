@@ -8,7 +8,7 @@ import setAuthToken from '../../utils/setAuthToken';
 //Login User
 const login = (data) => async (dispatch) => {
   try {
-    const res = await axios.post(`${baseUrl}/api/v1/auth/login`, data);
+    const res = await axios.post(`${baseUrl}/login`, data);
     const token = res.data.token;
     //Store jwtToken to localStorage
     localStorage.setItem('jwtToken', token);
