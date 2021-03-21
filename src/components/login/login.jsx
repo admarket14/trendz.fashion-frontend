@@ -5,6 +5,9 @@ import facebookLogo from '../../assets/images/sso/facebook.svg';
 import ArrowRightIcon from '../../assets/icons/arrows/arrowRight';
 import { signInWithGoogle } from "../../services/firebase";
 import { FormattedMessage, useIntl } from 'react-intl';
+import EyeOpenIcon from '../../assets/icons/eye/eyeOpenIcon';
+import EyeClosedIcon from '../../assets/icons/eye/eyeClosedIcon';
+import User from "../../models/user";
 
 const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
   const intl = useIntl();
@@ -18,6 +21,7 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isRegistrationScreen, showRegistrationScreen] = useState(false);
+  const [passwordVisibility, togglePasswordVisibility] = useState(false);
 
   const beforeSignIn = () => {
     setIsLoading(true);
@@ -27,6 +31,29 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
     setIsLoading(false);
     afterLogin(localData.currentUser);
     closeLogin();
+  };
+
+  const handleAuthentication = event => {
+    event.preventDefault();
+    const {
+      formPassword: password,
+      registerEmail: email,
+      registerMobileNumber: phoneNumber,
+      registerUsername: name
+    } = Object.fromEntries(new FormData(event.target).entries());
+    const formData = {
+      email,
+      name,
+      password
+    };
+    const user = new User();
+
+    if (isRegistrationScreen) {
+      setIsLoading(true);
+      user.register(formData).then(() => {
+        setIsLoading(false);
+      });
+    }
   };
 
   useEffect(() => {
@@ -40,7 +67,11 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
           <div className={styles.title} lang={locale}>
             {isRegistrationScreen ? <FormattedMessage id="create_account" /> : <FormattedMessage id="login" /> }
           </div>
-          <button data-test-id="closeModal" className={styles.closeLogin} onClick={closeLogin}>
+          <button data-test-id="closeModal" className={styles.closeLogin} onClick={() => {
+            closeLogin();
+            togglePasswordVisibility(false);
+            showRegistrationScreen(false);
+          }}>
             &times;
           </button>
         </div>
@@ -73,7 +104,10 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
               {isRegistrationScreen ? <FormattedMessage id="alternate_register" /> : <FormattedMessage id="alternate_login" /> }
             </span>
           </div>
-          <form className={styles.form}>
+          <form 
+            className={styles.form}
+            onSubmit={handleAuthentication}
+          >
             {isRegistrationScreen ? 
               <div className={styles.fieldSet}>
                 <label htmlFor="registerUsername" lang={locale}>
@@ -82,6 +116,7 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                 <div className={styles.inputWrap}>
                   <input
                     ref={usernameInput}
+                    name="registerUsername"
                     id="registerUsername"
                     type="text"
                     placeholder={intl.formatMessage({ id: 'username_prompt' })}
@@ -97,6 +132,7 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                 <div className={styles.inputWrap}>
                   <input
                     ref={emailInput}
+                    name="registerEmail"
                     id="registerEmail"
                     type="text"
                     placeholder={intl.formatMessage({ id: 'email_prompt' })}
@@ -112,6 +148,7 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                 <div className={styles.inputWrap}>
                   <input
                     ref={mobileNumberInput}
+                    name="registerMobileNumber"
                     id="registerMobileNumber"
                     type="text"
                     placeholder={intl.formatMessage({ id: 'phone_prompt' })}
@@ -128,6 +165,7 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                   <input
                     ref={loginInput}
                     id="loginUsername"
+                    name="loginUsername"
                     data-test-id="loginEmail"
                     type="text"
                     autoFocus
@@ -144,28 +182,45 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                 <input
                   ref={passwordInput}
                   data-test-id="formPassword"
+                  name="formPassword"
                   id="formPassword"
-                  type="password"
+                  type={passwordVisibility ? "text" : "password"}
                   placeholder={intl.formatMessage({ id: 'password_prompt' })}
                 />
+
+                <button 
+                  type="button"
+                  className={styles.togglePasswordVisibility}
+                  onClick={() => togglePasswordVisibility(!passwordVisibility)}
+                >
+                  {passwordVisibility ? <EyeOpenIcon/> : <EyeClosedIcon/>}
+                </button>
               </div>
             </div>
             <div className={`${styles.fieldSet} ${styles.loginActions}`} lang={locale}>
               <label className={styles.rememberMe}>
               {isRegistrationScreen ? null : 
                 <>
-                  <input type="checkbox" ref={rememberCheckboxInput} />
+                  <input type="checkbox" name="rememberMe" ref={rememberCheckboxInput} />
                   <FormattedMessage id="remember_me" />
                 </>
               }
               </label>
               {isRegistrationScreen ? 
-                <button className={styles.registerButton} data-test-id="registerButton">
+                <button 
+                  type="submit" 
+                  className={styles.registerButton} 
+                  data-test-id="registerButton"
+                >
                   <FormattedMessage id="register" />
                   <ArrowRightIcon />
                 </button>
                : 
-                <button className={styles.logInButton} data-test-id="loginButton">
+                <button 
+                  type="submit" 
+                  className={styles.logInButton} 
+                  data-test-id="loginButton"
+                >
                   <FormattedMessage id="login" />
                   <ArrowRightIcon />
                 </button>

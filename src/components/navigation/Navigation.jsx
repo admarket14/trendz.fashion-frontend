@@ -171,13 +171,13 @@ const Navigation = () => {
         </button>
 
         {/* ONLY IF USER LOGGER IN */}
-        <button
+        {/* <button
           aria-label="Sign In"
           onClick={() => history.push('/setting')}
           className={`${styles.navItem} ${styles.profileButton}`}
         >
           <ProfileIcon />
-        </button>
+        </button> */}
       </div>
     </header>
   );
