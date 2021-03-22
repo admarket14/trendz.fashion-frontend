@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import User from "../../models/user";
+import User from '../../models/user';
 import authAction from '../../redux/actions/authAction';
 import styles from './styles.module.scss';
 import googleLogo from '../../assets/images/sso/google.svg';
 import facebookLogo from '../../assets/images/sso/facebook.svg';
 import ArrowRightIcon from '../../assets/icons/arrows/arrowRight';
-import { signInWithGoogle } from "../../services/firebase";
+import { signInWithGoogle } from '../../services/firebase';
 import EyeOpenIcon from '../../assets/icons/eye/eyeOpenIcon';
 import EyeClosedIcon from '../../assets/icons/eye/eyeClosedIcon';
 
@@ -38,27 +38,27 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
     closeLogin();
   };
 
-  const handleAuthentication = event => {
+  const handleAuthentication = (event) => {
     event.preventDefault();
     const {
       password,
       registerEmail: email,
       registerMobileNumber: phoneNumber,
-      registerUsername: name
+      registerUsername: name,
     } = Object.fromEntries(new FormData(event.target).entries());
     const formData = {
       email,
       name,
-      password
+      password,
     };
     const user = new User();
 
     if (isRegistrationScreen) {
       setIsLoading(true);
-      user.register(formData).then(() => {
-        setIsLoading(false);
-        
-      });
+      dispatch(authAction.signUp(formData));
+      // user.register(formData).then(() => {
+      //   setIsLoading(false);
+      // });
     } else {
       dispatch(authAction.login(loginUser));
       setIsLoading(true);
@@ -79,7 +79,11 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
     setLoginUser({ ...loginUser, [e.target.name]: e.target.value });
 
   useEffect(() => {
-    auth.isAuthenticated && closeLogin() && setIsLoading(true);
+    auth.isAuthenticated && closeLogin();
+  }, [auth.isAuthenticated]);
+
+  useEffect(() => {
+    !auth.isAuthenticated && setIsLoading(false);
   }, [auth.isAuthenticated]);
 
   // Login Logic ends
@@ -95,11 +99,15 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
               <FormattedMessage id="login" />
             )}
           </div>
-          <button data-test-id="closeModal" className={styles.closeLogin} onClick={() => {
-            closeLogin();
-            togglePasswordVisibility(false);
-            showRegistrationScreen(false);
-          }}>
+          <button
+            data-test-id="closeModal"
+            className={styles.closeLogin}
+            onClick={() => {
+              closeLogin();
+              togglePasswordVisibility(false);
+              showRegistrationScreen(false);
+            }}
+          >
             &times;
           </button>
         </div>
@@ -140,10 +148,7 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
               )}
             </span>
           </div>
-          <form 
-            className={styles.form}
-            onSubmit={handleAuthentication}
-          >
+          <form className={styles.form} onSubmit={handleAuthentication}>
             {isRegistrationScreen ? (
               <div className={styles.fieldSet}>
                 <label htmlFor="registerUsername" lang={locale}>
@@ -223,47 +228,43 @@ const LogIn = ({ isVisible, onCloseLogin: closeLogin, locale, afterLogin }) => {
                   id="formPassword"
                   name="password"
                   onChange={handleLoginDetailChange}
-                  type={passwordVisibility ? "text" : "password"}
+                  type={passwordVisibility ? 'text' : 'password'}
                   placeholder={intl.formatMessage({ id: 'password_prompt' })}
                 />
 
-                <button 
+                <button
                   type="button"
                   className={styles.togglePasswordVisibility}
                   onClick={() => togglePasswordVisibility(!passwordVisibility)}
                 >
-                  {passwordVisibility ? <EyeOpenIcon/> : <EyeClosedIcon/>}
+                  {passwordVisibility ? <EyeOpenIcon /> : <EyeClosedIcon />}
                 </button>
               </div>
             </div>
             <div className={`${styles.fieldSet} ${styles.loginActions}`} lang={locale}>
               <label className={styles.rememberMe}>
-              {isRegistrationScreen ? null : 
-                <>
-                  <input type="checkbox" name="rememberMe" ref={rememberCheckboxInput} />
-                  <FormattedMessage id="remember_me" />
-                </>
-              }
+                {isRegistrationScreen ? null : (
+                  <>
+                    <input type="checkbox" name="rememberMe" ref={rememberCheckboxInput} />
+                    <FormattedMessage id="remember_me" />
+                  </>
+                )}
               </label>
-              {isRegistrationScreen ? 
-                <button 
-                  type="submit" 
-                  className={styles.registerButton} 
+              {isRegistrationScreen ? (
+                <button
+                  type="submit"
+                  className={styles.registerButton}
                   data-test-id="registerButton"
                 >
                   <FormattedMessage id="register" />
                   <ArrowRightIcon />
                 </button>
-               : 
-                <button 
-                  type="submit"
-                  className={styles.logInButton} 
-                  data-test-id="loginButton"
-                >
+              ) : (
+                <button type="submit" className={styles.logInButton} data-test-id="loginButton">
                   <FormattedMessage id="login" />
                   <ArrowRightIcon />
                 </button>
-              }
+              )}
             </div>
           </form>
         </div>

@@ -120,7 +120,12 @@ const Sidebar = ({ openLogin, isLoggedIn, currentUser, handleLogout }) => {
           >
             <div
               className={styles.profileImage}
-              style={{ backgroundImage: `url('${auth.user.avatar}')` }}
+              style={{
+                backgroundImage: `url('${
+                  auth.user.avatar ||
+                  'https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png'
+                }')`,
+              }}
             ></div>
             <div className={styles.displayName}>{auth.user.name}</div>
           </Link>

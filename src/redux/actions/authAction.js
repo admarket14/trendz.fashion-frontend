@@ -6,9 +6,25 @@ import baseUrl from '../../config/baseUrl';
 import setAuthToken from '../../utils/setAuthToken';
 
 //Login User
+const signUp = (data) => async (dispatch) => {
+  try {
+    const res = await axios.post(`${baseUrl}/api/v1/auth/register`, data);
+    const token = res.data.token;
+    //Store jwtToken to localStorage
+    localStorage.setItem('jwtToken', token);
+    //decode token
+    const decoded = jwt_decode(token);
+    //Set current User
+    dispatch({ type: USER_LOADED, payload: decoded });
+    //Set Axios default header
+    setAuthToken(token);
+  } catch (err) {}
+};
+
+//Login User
 const login = (data) => async (dispatch) => {
   try {
-    const res = await axios.post(`${baseUrl}/login`, data);
+    const res = await axios.post(`${baseUrl}/api/v1/auth/login`, data);
     const token = res.data.token;
     //Store jwtToken to localStorage
     localStorage.setItem('jwtToken', token);
@@ -42,6 +58,6 @@ export const logoutUser = () => (dispatch) => {
   dispatch({ type: LOGOUT });
 };
 
-const authAction = { login, loadUser, logoutUser };
+const authAction = { login, loadUser, logoutUser, signUp };
 
 export default authAction;
