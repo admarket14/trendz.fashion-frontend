@@ -13,7 +13,7 @@ describe('Homepage testing', () => {
     cy.get('[data-test-id="loginEmail"]').type(data.email).should('have.value', data.email);
 
     // Get the login password input, type into it and verify that the value has been updated
-    cy.get('[data-test-id="loginPassword"]')
+    cy.get('[data-test-id="formPassword"]')
       .type(data.password)
       .should('have.value', data.password);
 

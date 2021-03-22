@@ -22,6 +22,66 @@
     padding: 0 5px;
   }
 
+  .sidebarToggler {
+    display: flex;
+    background: $white;
+    border: 0;
+    margin-right: 5px;
+    cursor: pointer;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: $medium-blue;
+      background-image: linear-gradient(315deg, $medium-blue 0%, $light-blue 74%);
+      z-index: -1;
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+
+      @media only screen and (max-width: 900px) {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    svg {
+      width: 25px;
+      height: 25px;
+      margin: 0 10px;
+      z-index: 1;
+
+      @media only screen and (max-width: 900px) {
+        width: 20px;
+        height: 20px;
+        margin: 0 8px;
+      }
+
+      path {
+        fill: #292c49;
+        transition: all ease 0.3s;
+      }
+    }
+    
+    &:hover,
+    &:focus {
+      svg {
+        path:first-child {
+          transform: translateY(-3px);
+        }
+  
+        path:last-child {
+          transform: translateY(3px);
+        }
+      }
+    }
+  }
+
   .pageBranding {
     display: inline-flex;
     align-items: center;
@@ -38,6 +98,11 @@
     svg {
       height: 25px;
       margin: 0 10px;
+
+      @media screen and (max-width: 480px) {
+        height: 15px;
+        margin: 0 5px;
+      }
     }
   }
 
@@ -234,16 +299,18 @@
             place-items: center;
             color: #fff;
             font-weight: bold;
-            width: 10px;
-            height: 10px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            top: 20px;
-            right: 15px;
+            font-size: 10px;
+            top: 10px;
+            right: 5px;
             background-color: #045de9;
             background-image: linear-gradient(315deg, #045de9 0%, #139dff 74%);
-            font-size: 0;
+            font-size: 10px;
             z-index: 2;
             transition: all 0.2s ease-in-out;
+            animation: showCartCount 1s cubic-bezier(1, 0, 0, 1) forwards;
           }
           &:hover, &:focus {
             svg {
@@ -251,13 +318,6 @@
               path {
                 stroke: #200E32;
               }
-            }
-            &::after {
-              width: 20px;
-              font-size: 10px;
-              height: 20px;
-              top: 10px;
-              right: 5px;
             }
           }
         }
@@ -332,6 +392,16 @@
         display: inline-flex;
       }
     }
+  }
+}
+
+@keyframes showCartCount {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
 

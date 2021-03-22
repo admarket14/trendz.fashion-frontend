@@ -23,7 +23,7 @@ const en = {
   access_recommendations: 'Get access to your Orders, Wishlist and Recommendations',
   email_or_username: 'Username/ Mobile No. / Email address',
   password: 'Password',
-  username_prompt: 'Enter your Username/ Mobile No. / Email address',
+  email_or_username_prompt: 'Enter your Username / Mobile No. / Email address',
   password_prompt: 'Enter your password',
   remember_me: 'Remember me',
   forgot_password: 'Forgot password?',
@@ -55,6 +55,14 @@ const en = {
   total: 'Total',
   place_order: 'Place Order',
   remove_from_cart: 'Remove from Cart',
+  create_an_account: "Create an account",
+  alternate_register: "Or Create an account with you email/mobile",
+  username: "Username",
+  username_prompt: "Enter your username",
+  email: "E-mail",
+  email_prompt: "Enter your email",
+  phone: "Phone",
+  phone_prompt: "Enter your Mobile Number"
 };
 
 export default en;
