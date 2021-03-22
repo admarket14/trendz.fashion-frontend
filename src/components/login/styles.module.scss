@@ -14,7 +14,7 @@
 
   .loginContainer {
     position: relative;
-    width: 35em;
+    width: 500px;
     max-height: 100%;
     overflow: hidden;
     overflow-y: auto;
@@ -32,7 +32,7 @@
       top: 0;
       z-index: 1;
       width: 100%;
-      height: 60px;
+      height: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -51,13 +51,13 @@
         position: absolute;
         cursor: pointer;
         font-size: 2em;
-        padding: calc(20px / 2) 20px;
+        padding: calc(12px / 2) 12px;
         border: 0;
         background: transparent;
         color: #fff;
         font-weight: lighter;
         top: 50%;
-        left: calc(100% - 30px);
+        left: calc(100% - 22px);
         transform: translate(-50%, -50%);
         opacity: 0.5;
         transition: 0.1s ease-out;
@@ -73,12 +73,12 @@
       display: flex;
       flex-direction: column;
       padding: 30px;
-      padding-bottom: 100px;
+      padding-bottom: 60px;
 
       .heading {
-        font-size: 1.5em;
+        font-size: 1.2em;
         font-weight: bold;
-        margin: 15px 0px;
+        margin: 10px 0px;
       }
 
       .subHeading {
@@ -99,8 +99,8 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          padding: 15px;
-          font-size: 1em;
+          padding: 10px;
+          font-size: 0.9em;
           background: #fff;
           border: 0;
           border-radius: 50px;
@@ -112,7 +112,8 @@
             width: 100%;
             img {
               vertical-align: middle;
-              max-width: 18px;
+              width: 15px;
+              height: 15px;
               margin-right: 10px;
             }
           }          
@@ -122,9 +123,8 @@
           flex-direction: column;
           .LoginWithGoogleButton, 
           .LoginWithFacebookButton {
-            padding: 5px;
+            padding: 15px;
           }
-
         }
       }
 
@@ -132,7 +132,7 @@
         position: relative;
         text-align: center;
         width: 100%;
-        padding: 20px;
+        padding: 10px;
         margin-top: 15px;
         font-size: 12px;
 
@@ -177,13 +177,17 @@
           .inputWrap {
             position: relative;
             width: 100%;
-            height: 50px;
+            height: 40px;
+            * {
+              transition: all 0.6s cubic-bezier(1, 0, 0, 1);
+            }
+
             input {
               position: absolute;
               width: 100%;
               height: 100%;
-              font-size: 1em;
-              padding: 10px 15px;
+              font-size: 15px;
+              padding: 5px 15px;
               border: 0;
               border-radius: 5px;
               box-shadow: 0 0 0 1px #bbbbbb;
@@ -200,7 +204,33 @@
               &:focus {
                 box-shadow: 0 0 0 2px #0084ff;
               }
-            }            
+            }
+            
+            .togglePasswordVisibility {
+              @include transform-center;
+              left: calc(100% - 20px);
+              display: flex;
+              place-content: center;
+              place-items: center;
+              width: 30px;
+              height: 30px;
+              background: #fff;
+              border: 0;
+              border-radius: 50%;
+              box-shadow: inset 0 0 0 1px #f3f3f3;
+              cursor: pointer;
+              outline: none;
+
+              svg {
+                width: 15px;
+                margin-top: 2px;
+              }
+
+              &:hover {
+                box-shadow: inset 0 0 0 1px #bbb;
+                background: #f3f3f3;
+              }
+            }
           }
 
           &.loginActions {
@@ -224,7 +254,8 @@
               letter-spacing: 0;
             }
 
-            .logInButton {
+            .logInButton,
+            .registerButton {
               display: flex;
               justify-content: center;
               align-items: center;

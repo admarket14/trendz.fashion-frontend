@@ -12,7 +12,7 @@
   z-index: 2;
   perspective: 1000px;
   transform-style: preserve-3d;
-  transition: all 0.1s ease-in-out;
+  transition: width 0.3s ease-in-out;
 
   @media only screen and (max-width: 900px) {
     top: 50px;
@@ -255,6 +255,7 @@
   }
 
   &.sidebarMinimized {
+
     .navLinks .navLink {
       &[data-target='mens'] {
         &:hover {
@@ -400,6 +401,34 @@
       display: none;
     }
 
+    animation: sidebarHide 0.2s ease-in-out 0.1s 1 forwards;
+
+    @media screen and (max-width: 480px) {
+      animation-name: sidebarHideMobile !important;
+    }
+  }
+}
+
+
+@keyframes sidebarHide {
+  0% {
+    width: 250px;
+  }
+
+  100% {
     width: 75px;
+  }
+}
+
+@keyframes sidebarHideMobile {
+  0% {
+    width: 250px;
+  }
+
+  100% {
+    width: 0px;
+    padding: 0;
+    visibility: hidden;
+    opacity: 0;
   }
 }

@@ -1,3 +1,7 @@
+//Login and Register
+export const USER_LOADED = 'USER_LOADED';
+export const LOGOUT = 'LOGOUT';
+
 export const SET_LANGUAGE = 'SET_LANGUAGE';
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
@@ -9,3 +13,5 @@ export const INCREMENT_COUNT = 'INCREMENT_COUNT';
 export const DECREMENT_COUNT = 'DECREMENT_COUNT';
 export const TOGGLE_CART_SECTION = 'TOGGLE_CART_SECTION';
 export const CLEAR_CART = 'CLEAR_CART';
+
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
