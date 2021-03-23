@@ -12,12 +12,8 @@ const signUp = (data) => async (dispatch) => {
     const token = res.data.token;
     //Store jwtToken to localStorage
     localStorage.setItem('jwtToken', token);
-    //decode token
-    const decoded = jwt_decode(token);
-    //Set current User
-    dispatch({ type: USER_LOADED, payload: decoded });
-    //Set Axios default header
-    setAuthToken(token);
+    //load current User
+    dispatch(loadUser());
   } catch (err) {}
 };
 
@@ -28,21 +24,24 @@ const login = (data) => async (dispatch) => {
     const token = res.data.token;
     //Store jwtToken to localStorage
     localStorage.setItem('jwtToken', token);
-    //decode token
-    const decoded = jwt_decode(token);
-    //Set current User
-    dispatch({ type: USER_LOADED, payload: decoded });
-    //Set Axios default header
-    setAuthToken(token);
+    // setAuthToken(token);
+
+    //load current User
+    dispatch(loadUser());
   } catch (err) {}
 };
 
 //Load User
-export const loadUser = () => (dispatch) => {
+export const loadUser = () => async (dispatch) => {
   if (localStorage.jwtToken) {
+    //Set Axios default header
     setAuthToken(localStorage.jwtToken);
+    //Decode auth token
     const decoded = jwt_decode(localStorage.jwtToken);
-    dispatch({ type: USER_LOADED, payload: decoded });
+    const res = await axios.get(`${baseUrl}/api/v1/user/me`);
+    console.log(res.data);
+
+    dispatch({ type: USER_LOADED, payload: res.data });
   } else {
     dispatch({ type: LOGOUT });
   }
