@@ -75,7 +75,7 @@ const NavSideBarContainer = ({ children }) => {
             Powered by <a href="https://reactjs.org/" target="_blank" alt="React">React JS</a> and <a href="https://www.netlify.com/" target="_blank" alt="Netlify">Netlify</a>
           </div>
           <div className={styles.right}>
-            You can find source of this site at <a href="https://github.com/pesto-students/little-tags-deepakbhadoriya-HimatejaMerlapaka-frontend" alt="Trendz.fashion">Github</a>
+            You can find source of this site at <a href="https://github.com/iamhimateja/trendz.fashion" alt="Trendz.fashion">Github</a>
           </div>
         </div>
         <LogIn onCloseLogin={closeLogin} isVisible={loginVisible} locale={locale} afterLogin={(user) => setCurrentUser(currentLoggedInUser())} />
