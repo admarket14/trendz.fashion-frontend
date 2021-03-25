@@ -1,6 +1,6 @@
 ![Screenshot from 2021-03-08 01-01-03](https://user-images.githubusercontent.com/48173231/110252183-2eb95d80-7faa-11eb-8be8-c8eae8ed82c3.png)
 
-### Ecommerce Fontend build on React
+### E-commerce Frontend build on React
 
 **Production Server** : https://trendz.fashion
 
@@ -19,8 +19,8 @@
 
 ## Install
 
-    $ git clone https://github.com/pesto-students/trendz.fashion-backend.git
-    $ cd trendz.fashion-backend
+    $ git clone https://github.com/iamhimateja/trendz.fashion.git
+    $ cd trendz.fashion
     $ npm install
 
 ## Start & watch
@@ -54,7 +54,32 @@ For End to End testing
 
 - https://github.com/ArfatSalman
 
-## Contributers
+## Contributors
 
 - https://github.com/iamhimateja
 - https://github.com/deepakbhadoriya
+
+# Todo
+- [x] Easy login & registration
+- [x] Internationalization
+- [x] Sorting products
+- [x] Detailed product descriptions
+- [x] Product gallery, 
+- [x] Shopping cart
+- [x] Order summary
+- [ ] **WIP**. Admin Panel
+- [ ] User's Wishlist
+- [ ] User-friendly product filtering
+- [ ] Flash sales and discounts
+- [ ] Product scores and reviews
+- [ ] Checking the shipping status
+- [ ] Easy customer portal
+- [ ] Demo Payments
+
+# P.S
+
+Currently the demo is only front-end. You may find somethings like incomplete features like showing a 🥾 image for all the products or unresponsive buttons etc. 
+
+These are currently intentional. We are continuously working on making this app better and better. 
+
+Please feel free to [Create an issue](https://github.com/iamhimateja/trendz.fashion/issues/new). Most likely we are currently working on the issues you may found. 
